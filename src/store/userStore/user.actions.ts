@@ -8,7 +8,7 @@ export const userAuth = createAsyncThunk<IUserAuth, IUserReg>(
 	'auth/reg',
 	async (userData, thunkApi) => {
 		try {
-			const { data } = await axios.post(`http://localhost:4500/registration`, {
+			const { data } = await axios.post(`https://game-forum-server.vercel.app/registration`, {
 				userData,
 			})
 			return data
@@ -22,7 +22,7 @@ export const userLogin = createAsyncThunk<IUserAuth, IUserLog>(
   'auth/log',
   async (userData, thunkApi) => {
 		try {
-			const { data } = await axios.post(`http://localhost:4500/login`, {
+			const { data } = await axios.post(`https://game-forum-server.vercel.app/login`, {
 				userData,
 			})
 			return data

@@ -13,7 +13,7 @@ const Themes = {
 	getAllThemes(id: string) {
 		const fetcher = async () => {
 			const { data } = await axios.get<IThemes>(
-				`http://localhost:4500/topic/${id}`
+				`https://game-forum-server.vercel.app/topic/${id}`
 			)
 
 			const categoryData = data.categoryData
@@ -36,7 +36,7 @@ const Themes = {
 	getSingleTheme(id: string) {
 		const fetcher = async () => {
 			const { data } = await axios.get<IThemeData>(
-				`http://localhost:4500/theme/${id}`
+				`https://game-forum-server.vercel.app/theme/${id}`
 			)
 			return data
 		}

@@ -10,7 +10,7 @@ const Category = {
 	getAllCategorie(): IResponse {
 
 		const fetcher = async () => {
-			const { data } = await axios.get<ICategory>('http://localhost:4500/')
+			const { data } = await axios.get<ICategory>('https://game-forum-server.vercel.app/')
 			return data
 		}
 	
