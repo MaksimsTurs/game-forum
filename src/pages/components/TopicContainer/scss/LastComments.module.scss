@@ -1,0 +1,64 @@
+@import '../../../../styles/variabels.scss';
+
+.comments_container {
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: $def-container-border-radius;
+  border: $def-container-border;
+  box-shadow: $def-container-shadow;
+  height: fit-content;
+
+  .comments_header {
+    padding: 0.7rem;
+    font-size: 0.8rem;
+    border-bottom: $def-container-border;
+  }
+
+  .comments_user_icon {
+    width: $small-user-icon;
+    height: $small-user-icon;
+    border-radius: $smal-user-icon-border;
+  }
+
+  .comments_main_container {
+    display: flex;
+    align-items: center;
+    padding: 0.9rem;
+    width: 19rem;
+  }
+
+  .comments_main_info {
+    overflow: hidden;
+    margin: 0rem 0.5rem;
+  }
+
+  .comments_topic_link {
+    font-size: 0.8rem;
+  }
+
+  .comments_overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .comments_author {
+    margin: 0.2rem 0rem;
+    font-size: 0.8rem;
+  }
+
+  .comments_public_date {
+    color: grey;
+    font-size: 0.8rem;
+  }
+
+  .comments_replies_count {
+    font-size: 0.7rem;
+    color: $def-font-color;
+    height: fit-content;
+    width: fit-content;
+    padding: 0.45rem 0.65rem;
+    border-radius: 100%;
+    background: rgba(192, 192, 192, 0.3);
+  }
+}

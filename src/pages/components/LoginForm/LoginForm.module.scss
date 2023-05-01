@@ -1,0 +1,59 @@
+@import '../../../styles/variabels.scss';
+
+.log_form {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background-color: white;
+  border-radius: $def-container-border-radius;
+  box-shadow: $def-container-shadow;
+  padding: 0.9rem;
+  display: flex;
+  z-index: 2;
+  color: black;
+  width: 32rem;
+  cursor: auto;
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: bolder;
+    margin-bottom: 0.8rem;
+  }
+  
+  .log_form_container {
+    width: 15rem;
+    margin-right: 1rem;
+  }
+
+  .log_input {
+    border: $def-container-border;
+    border-radius: $def-container-border-radius;
+    padding: 0.5rem 0.25rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+  .log_button {
+    font-weight: bolder;
+    width: 100%;
+    padding: 0.6rem;
+    color: white;
+    background-color: $submit-button-color;
+    border-radius: $def-container-border-radius;
+  
+    &:hover {
+      background-color: $submit-button-color-hover;
+    }
+  }
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.2s ease;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+}

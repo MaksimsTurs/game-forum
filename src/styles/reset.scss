@@ -1,0 +1,135 @@
+* {
+  font-family: 'Roboto', sans-serif;
+  user-select: none;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+header,
+main,
+footer {
+  padding: 0rem 7rem;
+}
+
+header {
+  background: rgb(77, 89, 111);
+  padding-top: 1rem;
+}
+
+main {
+  flex-grow: 1;
+  margin: 1.5rem 0rem;
+}
+
+footer {
+  background: #191d24;
+  padding-top: 2rem;
+  padding-bottom: 6rem;
+  display: flex;
+  justify-content: space-between;
+
+  p {
+    color: #7d8db3;
+    font-size: 0.8rem;
+    font-weight: bolder;
+  }
+}
+
+button {
+  background-color: white;
+  cursor: pointer;
+}
+
+
+input,
+button,
+textarea {
+  font-family: inherit;
+  background-color: transparent;
+}
+
+input {
+  background: transparent;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+input[type=file],
+input[type=radio] {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+a {
+  color: black;
+}
+
+p {
+  direction: ltr;
+  unicode-bidi: isolate;
+}

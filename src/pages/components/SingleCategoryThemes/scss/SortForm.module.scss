@@ -1,0 +1,95 @@
+@import '../../../../styles/variabels.scss';
+
+.themes_sort_container {
+  font-size: 0.75rem;
+  font-weight: bolder;
+  position: relative;
+  padding: 0.3rem;
+  border-radius: $def-container-border-radius;
+  border: $def-container-border;
+  cursor: pointer;
+  z-index: 1;
+
+  .themes_sort_form {
+    position: absolute;
+    top: 130%;
+    left: 50%;
+    translate: -50% 0%;
+    background-color: white;
+    border-radius: $def-container-border-radius;
+    box-shadow: 0 8px 50px rgba(0, 0, 0, 0.1), 0px 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
+    white-space: pre;
+    width: 10rem;
+  }
+
+  .themes_sort_list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .themes_sort_item {
+    margin-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+
+  .themes_checkbox_label {
+    position: relative;
+    font-weight: normal;
+    cursor: pointer;
+    border-radius: $def-item-border;
+    width: 100%;
+    padding: 0.5rem;
+    padding-left: 1.4rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      display: inline-block;
+      width: 0.6rem;
+      height: 0.6rem;
+      top: 50%;
+      left: 5px;
+      translate: 0% -50%;
+      border-radius: 50%;
+      padding-left: -1.2rem;
+      border: $def-container-border
+    }
+  }
+
+  .themes_custom_checkbox:checked+.themes_checkbox_label::before {
+    content: '\002713';
+    position: absolute;
+    font-weight: bolder;
+    top: 20%;
+    font-size: 1.1rem;
+    display: inline;
+    border: none;
+  }
+
+  .themes_custom_checkbox:checked+.themes_checkbox_label {
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hidden {
+  transition: all 0.2s ease;
+  opacity: 0;
+  visibility: hidden;
+}

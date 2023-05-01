@@ -1,0 +1,124 @@
+@import '../../../../styles/variabels.scss';
+
+.header_form {
+  display: flex;
+  align-items: center;
+  height: 2rem;
+  background-color: white;
+  cursor: pointer;
+  border-radius: $def-circle-border-radius;
+
+  .header_submit {
+    padding: 0.25rem 0.8rem;
+    height: 100%;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    font-size: 1.2rem;
+    display: flex;
+
+    &:hover {
+      background: rgb(130, 130, 130);
+      color: white;
+    }
+  }
+
+  .header_submit_icon {
+    transform: rotate(-45deg);
+  }
+
+  .header_filter_icon {
+    width: 0.45rem;
+    margin-left: 0.5rem;
+  }
+
+  .header_form_input {
+    padding: 0.5rem 0.3rem 0.5rem 0.9rem;
+    width: 7rem;
+  }
+
+  .header_form_items {
+    position: absolute;
+    left: 0;
+    top: 115%;
+    z-index: 10;
+    background-color: white;
+    padding: 0.5rem;
+    width: 8rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+
+    opacity: 0;
+    visibility: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      top: -0.35rem;
+      left: 0;
+      background: transparent;
+      height: 5px;
+    }
+  }
+
+  .header_form_item {
+    display: flex;
+    color: grey;
+    fill: grey;
+    padding: 0.4rem;
+    margin-bottom: 0.25rem;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: white;
+      fill: white;
+      background-color: rgb(50, 50, 50);
+      transition: all 0.2s ease;
+    }
+  }
+
+  .header_filter_check {
+    width: 0.8rem;
+    margin-right: 0.5rem;
+  }
+
+  .header_form_container {
+    padding: 0.5rem;
+    width: 6rem;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+    color: grey;
+    fill: grey;
+    font-size: 0.8rem;
+    transition: 0.2s;
+    position: relative;
+
+    &:hover {
+      transition: 0.2s;
+      background: rgb(130, 130, 130);
+      color: white;
+      fill: white;
+    }
+
+    &:hover .header_form_items {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+.visible {
+  transition: all 0.2s;
+  opacity: 1;
+  visibility: visible;
+}
+
+.hidden {
+  transition: all 0.2s;
+  opacity: 0;
+  visibility: hidden;
+}

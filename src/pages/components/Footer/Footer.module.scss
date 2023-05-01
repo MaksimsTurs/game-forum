@@ -1,0 +1,21 @@
+  .footer_social_items {
+    display: flex;
+    justify-content: space-between;
+
+    .footer_social_link {
+      color: #7d8db3;
+      padding-right: 1rem;
+      transition: all 0.3s ease;
+      font-size: 0.8rem;
+      font-weight: bolder;
+
+      &:hover {
+        transition: all 0.3s ease;
+        color: white;
+      }
+
+      &:last-child {
+        margin: 0rem;
+      }
+    }
+  }

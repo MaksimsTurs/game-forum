@@ -1,0 +1,57 @@
+@import '../../../../styles/variabels.scss';
+
+.category_content_container {
+  border-bottom: $def-container-border;
+  padding: 0.8rem 1.6rem;
+  display: flex;
+  align-items: center;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .category_info_container {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+  .category_info_body {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+  }
+
+  .category_comment_continaer {
+    display: flex;
+    align-items: center;
+  }
+
+  .category_count {
+    margin-right: 1rem;
+    text-align: right;
+  }
+
+  .category_icon {
+    width: $small-user-icon;
+    height: $small-user-icon;
+    margin-right: 1rem;
+    border-radius: $smal-user-icon-border;
+  }
+
+  .category_category_link {
+    font-weight: bold;
+  }
+
+  .category_category_description {
+    margin-top: 0.2rem;
+    color: grey;
+    font-size: 0.75rem;
+  }
+
+  .category_last_comment {
+    width: 8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

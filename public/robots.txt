@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Allow: /topic/
+
+Sitemap: https://my-game-site.vercel.app/sitemap.xml

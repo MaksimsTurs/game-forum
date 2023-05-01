@@ -1,0 +1,75 @@
+@import '../../../styles/variabels.scss';
+
+.header_container {
+  border: $def-container-border;
+  border-radius: $def-container-border-radius;
+  box-shadow: $def-container-shadow;
+  padding: 1rem;
+  margin: 0.8rem 0rem;
+
+  .header_title_container {
+    padding-bottom: 1rem;
+    border-bottom: $def-container-border;
+  }
+
+  .header_title {
+    font-size: 1.4rem;
+    font-weight: bolder;
+    margin-bottom: 0.5rem;
+  }
+
+  .header_description {
+    font-size: 0.9rem;
+    color: $def-font-color;
+  }
+
+  .header_follow_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  .header_follow_content {
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    padding: 0.3rem;
+    background-color: rgb(205, 213, 222);
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+
+  .header_follow {
+    margin: 0rem 0.9rem;
+    color: $def-font-color;
+  }
+
+  .header_follow_count {
+    border-radius: 6px;
+    padding: 0.35rem 0.7rem;
+    background-color: white; 
+  }
+
+  .header_theme_info {
+    display: flex;
+    align-items: center;
+  }
+
+  .header_author_icon {
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 25%;
+    margin-right: 0.5rem;
+  }
+  .header_author_name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: $def-font-color
+  }
+  .header_date {
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
+    color: grey;
+  }
+}
