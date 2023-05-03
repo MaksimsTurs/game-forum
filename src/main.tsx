@@ -1,10 +1,9 @@
-import './index.scss'
 import './styles/reset.scss'
 
 //Node_modules imports
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Suspense, lazy } from 'react'
 
 //Store imports
@@ -19,7 +18,7 @@ const Loader = lazy(() => import('./pages/components/Loader/Loader.tsx'))
 const UserDetail = lazy(() => import('./pages/UserDetail.tsx'))
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
-	<BrowserRouter>
+	<HashRouter>
 		<Provider store={store}>
 			<Routes>
 				<Route
@@ -64,5 +63,5 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
 				/>
 			</Routes>
 		</Provider>
-	</BrowserRouter>
+	</HashRouter>
 )

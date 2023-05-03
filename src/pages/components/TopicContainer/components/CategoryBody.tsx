@@ -9,14 +9,14 @@ import { Link } from 'react-router-dom'
 import usericon from './../img/user_icon.png?format=webp&preset=thumbnail '
 
 import { FC } from 'react'
+import { ICategory } from '../../../../services/category/interfaces/category.interfaces'
 
 interface IComponentProps {
-	data: any,
+	data: ICategory
 	src: string
 }
 
-const CategoryBody: FC<IComponentProps> = ({data, src}: IComponentProps) => {
-
+const CategoryBody: FC<IComponentProps> = ({ data, src }: IComponentProps) => {
 	return (
 		<section className={style.category_content_container}>
 			<div className={style.category_info_container}>
@@ -29,15 +29,14 @@ const CategoryBody: FC<IComponentProps> = ({data, src}: IComponentProps) => {
 						style={{ marginRight: 0.5 + 'rem' }}
 					/>
 					<div className={style.category_category_info}>
-						<Link className={style.category_category_link} to={`/category/${data._id}/${data.title}`}>
-							{
-								data.title
-							}
+						<Link
+							className={style.category_category_link}
+							to={`/category/${data._id}/${data.title}`}
+						>
+							{data.title}
 						</Link>
 						<p className={style.category_category_description}>
-							{
-								data.description
-							}
+							{data.description}
 						</p>
 					</div>
 				</div>
@@ -47,21 +46,20 @@ const CategoryBody: FC<IComponentProps> = ({data, src}: IComponentProps) => {
 				</div>
 			</div>
 			<div className={style.category_comment_continaer}>
-				<img
-					className={style.category_icon}
-					src={usericon}
-					alt='UserIcon'
-					placeholder='blur'
-				/>
+				<Link to={`/user/${data.last_comment.author_id}`}>
+					<img
+						className={style.category_icon}
+						src={usericon}
+						alt='UserIcon'
+						placeholder='blur'
+					/>
+				</Link>
 				<div className={style.category_last_comment}>
-					<Link className={style.category_category_link} to={'/'}>
-						4.7.9: No theme updates necessary Lorem ipsum dolor sit amet
-						consectetur adipisicing elit. Necessitatibus hic cum vero culpa.
-						Neque quos dicta non facere veniam aspernatur optio modi odit enim
-						corrupti numquam, tenetur magni obcaecati quia?
+					<Link className={style.category_category_link} to={``}>
+						{data.last_comment.title}
 					</Link>
 					<p className={style.category_category_description}>
-						By nicolast, Wednesday at 02:20 PM
+						By {data.last_comment.author}, Wednesday at 02:20 PM
 					</p>
 				</div>
 			</div>

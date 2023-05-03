@@ -10,17 +10,17 @@ import { Link } from 'react-router-dom'
 
 //Interfaces imports
 import { FC, Fragment } from 'react'
+import { IThemeData } from '../../../services/themes/interfaces/themes.interfaces'
 
 //Components imports
 import ThemeComment from './components/ThemeComment'
 import ThemeCommentForm from './components/ThemeCommentForm'
 
 interface IComponentProps {
-	data: any
+	data: IThemeData | undefined
 }
 
 const Theme: FC<IComponentProps> = ({ data }: IComponentProps) => {
-	console.log(data)
 
 	return (
 		<Fragment>

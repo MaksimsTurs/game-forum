@@ -13,7 +13,7 @@ const createBreadcrumbs = (path: string, title: string, themetitle: string | und
 	} else if (path.match('registration')) {
 		crumbs = [...crumbs, { title: 'Registration', path: path }]
 	} else if (path.match('user')) {
-		crumbs = [...crumbs, { title: 'User', path: path }]
+		crumbs = [...crumbs, { title: themetitle || '', path: path }]
 	}
 	return crumbs
 }

@@ -18,3 +18,14 @@ export interface IUserLog {
 	name: string
 	password: string
 }
+
+export interface IUserInfo {
+	role: string
+	name: string
+	status?: string
+	error?: string
+}
+
+export interface IUserId {
+	id: string
+}

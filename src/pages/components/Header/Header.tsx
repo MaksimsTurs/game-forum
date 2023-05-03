@@ -15,7 +15,7 @@ import { FC, Fragment } from 'react'
 import { AppDispatch, RootState } from '../../../store/hook'
 
 //Reducers imports
-import { logout } from '../../../store/userStore/user.slice'
+import { logout } from '../../../store/userStore/user.auth.slice'
 
 const LoginForm = lazy(() => import('../LoginForm/LoginForm'))
 
@@ -25,10 +25,14 @@ const Header: FC = () => {
 
 	useEffect(() => {
 		const clickHandler = async (event: any) => {
-			if (logRef.current && !logRef.current.contains(event.target)) {
-				setVisible(false)
-			} else {
-				setVisible(true)
+			if (logRef.current !== null) {
+				if (logRef.current && !logRef.current.contains(event.target)) {
+					setVisible(false)
+				} else if (isVisible && !logRef.current.contains(event.target)) {
+					setVisible(false)
+				} else {
+					setVisible(true)
+				}
 			}
 		}
 
@@ -37,7 +41,7 @@ const Header: FC = () => {
 		return () => document.removeEventListener('click', clickHandler)
 	})
 
-	const role = useSelector<RootState>(state => state.auth.role)
+	const role = useSelector<RootState>(state => state.userAuthSlice.role)
 
 	const dispatch = useDispatch<AppDispatch>()
 

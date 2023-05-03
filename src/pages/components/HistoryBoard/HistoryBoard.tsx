@@ -21,6 +21,7 @@ const HistoryBoard: FC<IComponentProps> = ({ themetitle }) => {
 		.split('%20')
 		.join(' ')
 
+
 	const res = createBreadcrumbs(pathname, title, themetitle)
 
 	return (

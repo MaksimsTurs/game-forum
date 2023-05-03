@@ -115,6 +115,7 @@ const RegistrationForm: FC = () => {
 					<input
 						className={style.reg_checkbox_input}
 						type='checkbox'
+						id='notification'
 						{...register('updateNotification')}
 					/>
 					<label className={style.reg_checkbox_label} htmlFor='notification'>
@@ -125,11 +126,12 @@ const RegistrationForm: FC = () => {
 					<input
 						className={style.reg_checkbox_input}
 						type='checkbox'
+						id='termsPolicy'
 						{...register('terms', {
 							required: 'You must term policity accept',
 						})}
 					/>
-					<label className={style.reg_checkbox_label} htmlFor='terms-policy'>
+					<label className={style.reg_checkbox_label} htmlFor='termsPolicy'>
 						I agree to the Terms of Use and Privacy Policy <span>*</span>
 					</label>
 					{errors && (

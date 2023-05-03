@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 //Interfaces imports
-import { IUserAuth } from './userauth.interface'
+import { IUserAuth } from './interfaces/user.interfaces'
 
 //Actions imports
 import { userAuth, userLogin } from './user.actions'
@@ -14,12 +14,12 @@ const initialState: IUserAuth = {
 	error: '',
 }
 
-export const userSlice = createSlice({
+export const userAuthSlice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {
 		logout: (_, { payload }) => {
-			console.log(payload)
+			(payload)
 			localStorage.setItem('token', payload)
 			localStorage.setItem('role', payload)
 		}
@@ -59,5 +59,5 @@ export const userSlice = createSlice({
 	},
 })
 
-export const { logout } = userSlice.actions
-export default userSlice.reducer
+export const { logout } = userAuthSlice.actions
+export default userAuthSlice.reducer

@@ -17,6 +17,7 @@ import bugicon from './img/bug_icon.png?format=webp&preset=thumbnail'
 import newsicon from './img/news_icon.png?format=webp&preset=thumbnail'
 import guidicon from './img/guide_icon.png?format=webp&preset=thumbnail'
 import tavervnicon from './img/discussion_icon.png?format=webp&preset=thumbnail'
+import Loader from '../Loader/Loader.tsx'
 
 const CategoryContainer: FC = () => {
 	const [isHidden, setHidden] = useState<boolean>(false)
@@ -27,12 +28,14 @@ const CategoryContainer: FC = () => {
 		setHidden((prev: boolean) => !prev)
 	}
 
-	const { data, error } = Category.getAllCategorie()
+	const { data, error, isLoading } = Category.getAllCategorie()
+
+	if (error) throw new error
 
 	return (
 		<Fragment>
-			{error ? (
-				<div>{error}</div>
+			{isLoading ? (
+				<Loader />
 			) : (
 				<Fragment>
 					<p className={`${style.category_title} ${style.category_border}`}>
@@ -60,13 +63,14 @@ const CategoryContainer: FC = () => {
 									</button>
 								</header>
 								<div className={isHidden ? style.hidden : style.category_body}>
-									{data && data.map((data: any, index: number) => (
-										<CategoryBody
-											key={data._id}
-											data={data}
-											src={pngicon[index]}
-										/>
-									))}
+									{data &&
+										data.map((data: any, index: number) => (
+											<CategoryBody
+												key={data._id}
+												data={data}
+												src={pngicon[index]}
+											/>
+										))}
 								</div>
 							</div>
 							<ForumStatistic />

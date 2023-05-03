@@ -26,7 +26,7 @@ export default defineConfig({
 			output: {
 				assetFileNames: (assetInfo: { name: any }) => {
 					let extType = assetInfo.name!.split('.').at(1)
-					if (/png||webp/i.test(String(extType))) {
+					if (/png|jpe?g|webp/i.test(String(extType))) {
 						extType = 'img'
 					}
 					return `assets/${extType}/[name]-[hash][extname]`

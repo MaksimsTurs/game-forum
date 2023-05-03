@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 //Interfaces imports 
-import { IUserAuth, IUserLog, IUserReg } from './userauth.interface'
+import { IUserAuth, IUserId, IUserInfo, IUserLog, IUserReg } from './interfaces/user.interfaces'
 
 export const userAuth = createAsyncThunk<IUserAuth, IUserReg>(
 	'auth/reg',
@@ -25,6 +25,18 @@ export const userLogin = createAsyncThunk<IUserAuth, IUserLog>(
 			const { data } = await axios.post(`https://game-forum-server.vercel.app/login`, {
 				userData,
 			})
+			return data
+		} catch (error) {
+			return thunkApi.rejectWithValue(error)
+		}
+	}
+)
+
+export const userCheck = createAsyncThunk<IUserInfo, IUserId>(
+	'auth/check',
+	async (id, thunkApi) => {
+		try {
+			const { data } = await axios.post(`https://game-forum-server.vercel.app/user/${id}`)
 			return data
 		} catch (error) {
 			return thunkApi.rejectWithValue(error)

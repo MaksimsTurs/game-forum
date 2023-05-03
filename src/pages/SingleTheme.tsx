@@ -11,28 +11,30 @@ import Theme from './components/ThemeContainer/Theme'
 
 //Services imports
 import Themes from '../services/themes/themes.services'
+import Loader from './components/Loader/Loader'
 
 const SingleTheme: FC = () => {
 	const { pathname } = useLocation()
 	const id = pathname.replace('/theme/', '')
 
-	const { data, error } = Themes.getSingleTheme(id)
+	const { data, error, isLoading } = Themes.getSingleTheme(id)
+
+	if (error) throw error
 
 	return (
 		<Fragment>
 			<Header />
-			{error ? (
-				<div>{error}</div>
-			) : (
+			{isLoading ?
+			<Loader/> :
 				<Fragment>
-					<main className='index_container'>
+					<main>
 						<HistoryBoard themetitle={data?.title} />
 						<CategoryThemesHeader title={data?.title} />
 						<Theme data={data} />
 						<HistoryBoard themetitle={data?.title} />
 					</main>
 				</Fragment>
-			)}
+			}
 			<Footer />
 		</Fragment>
 	)

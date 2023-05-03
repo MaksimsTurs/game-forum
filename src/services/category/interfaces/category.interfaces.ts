@@ -1,11 +1,12 @@
-export interface IResponse {
-  data: any | undefined
-  error: string | undefined,
-
-}
-
 export interface ICategory {
   _id: string,
   title: string,
-  description: string
+  description: string,
+  last_comment: {
+    title: string,
+    author: string,
+    author_id: string,
+    author_icon: string,
+    public_data: string,
+  }
 }

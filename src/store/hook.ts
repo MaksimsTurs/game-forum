@@ -6,10 +6,12 @@ import { combineReducers } from 'redux'
 import { configureStore } from '@reduxjs/toolkit'
 
 //Slice imports
-import userSlice from './userStore/user.slice'
+import userAuthSlice from './userStore/user.auth.slice'
+import userCheckSlice from './userStore/user.check.slice'
 
 export const rootReducer = combineReducers({
-	auth: userSlice,
+	userAuthSlice,
+  userCheckSlice
 })
 
 const store = configureStore({

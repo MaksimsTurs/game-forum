@@ -7,15 +7,25 @@ import { FC } from 'react'
 //Image imports
 import usericon from '../img/user_icon.png?format=webp&preset=thumbnail'
 
-const UserHeader: FC = () => {
+interface IComponentProps {
+	userData: [
+		name: string,
+		role: string
+	]
+}
+
+const UserHeader: FC<IComponentProps> = ({ userData }: IComponentProps) => {
+
+	const [name, role] = userData.map(el => el)
+
 	return (
 		<div className={style.detail_header}>
 			<div className={style.detail_header_top}>
 				<div className={style.detail_header_top_body}>
 					<img src={usericon} alt='User icon' />
 					<div className={style.detail_user_data}>
-						<h2>Ehren</h2>
-						<h3>Root Admin</h3>
+						<h2>{name}</h2>
+						<h3>{role === 'admin' ? `Root ${role[0].toUpperCase()}${role.split('a')[1]}` : 'Member'}</h3>
 					</div>
 				</div>
 			</div>

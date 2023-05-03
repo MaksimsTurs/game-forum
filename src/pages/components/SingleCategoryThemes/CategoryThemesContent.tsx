@@ -26,7 +26,7 @@ const CategoryThemesContent: FC<IComponentProps> = ({ themes }: IComponentProps)
 				{themes?.map((theme: any, index: number) => (
 					    <article className={style.themes_theme_container} key={index}>
 							<div className={style.themes_main_info}>
-								<a className={style.themes_info_title} href={`/theme/${theme._id}`}>
+								<a className={style.themes_info_title} href={`/#/theme/${theme._id}`}>
 									{ theme.title }
 								</a>
 								<h3 className={style.themes_info_undertitle}>By <>{ theme.author }</>, April 5</h3>

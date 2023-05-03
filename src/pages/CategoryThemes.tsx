@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
 import CategoryThemesHeader from './components/CategoryThemesHeader/CategoryThemesHeader'
 import CategoryThemesContent from './components/SingleCategoryThemes/CategoryThemesContent'
+import Loader from './components/Loader/Loader'
 
 //Node_modules imports
 import { useLocation } from 'react-router-dom'
@@ -16,13 +17,15 @@ const CategoryThemes: FC = () => {
 	const { pathname } = useLocation()
 	const id = pathname.replace('/category/', '').split('/')[0]
 
-	const { categoryData, themeData, error } = Themes.getAllThemes(id)
+	const { categoryData, themeData, error, isLoading } = Themes.getAllThemes(id)
+
+	if (error) throw error
 
 	return (
 		<Fragment>
 			<Header />
-			{error ? (
-				<div>{error}</div>
+			{isLoading ? (
+				<Loader />
 			) : (
 				<Fragment>
 					<main>

@@ -7,7 +7,7 @@ import { FC } from 'react'
 
 const RegistrationContainer: FC = () => {
 	return (
-		<div style={{ display: 'flex', marginTop: `${1}rem` }}>
+		<div style={{ display: 'flex', margin: `${1}rem ${0}rem` }}>
 			<RegistrationForm />
 			<FacebookButton />
 		</div>
