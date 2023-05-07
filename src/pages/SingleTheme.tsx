@@ -17,9 +17,7 @@ const SingleTheme: FC = () => {
 	const { pathname } = useLocation()
 	const id = pathname.replace('/theme/', '')
 
-	const { data, error, isLoading } = Themes.getSingleTheme(id)
-
-	if (error) throw error
+	const { data, isLoading } = Themes.getSingleTheme(id)
 
 	return (
 		<Fragment>

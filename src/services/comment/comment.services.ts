@@ -5,15 +5,10 @@ import axios from 'axios'
 //Interfaces imports
 import { IComment } from './interfaces/comment.interfaces'
 
-const BASE_URL =
-	import.meta.env.MODE == 'development'
-		? import.meta.env.VITE_DEV_SERVER_URL
-		: import.meta.env.VITE_PROD_SERVER_URL
-
 const Comment = {
 	getAllComments(id: string) {
 		const fetcher = async (url: string) => {
-			const { data } = await axios.get<IComment[]>(`${BASE_URL}/${url}/${id}`)
+			const { data } = await axios.get<IComment[]>(`https://game-forum-server.vercel.app/${url}/${id}`)
 			return data
 		}
 
@@ -22,11 +17,11 @@ const Comment = {
 	},
 
 	async createComment(token: string, data: any) {
-		await axios.post<IComment>(`${BASE_URL}/comment/${token}`, { data })
+		await axios.post<IComment>(`https://game-forum-server.vercel.app/comment/${token}`, { data })
 	},
 
 	async deleteComment(body: any) {
-		const { data } = await axios.post(`${BASE_URL}/comment/action/delete`, {
+		const { data } = await axios.post(`https://game-forum-server.vercel.app/comment/action/delete`, {
 			body,
 		})
 		return data

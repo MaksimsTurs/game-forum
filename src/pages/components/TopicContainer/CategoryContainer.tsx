@@ -28,9 +28,7 @@ const CategoryContainer: FC = () => {
 		setHidden((prev: boolean) => !prev)
 	}
 
-	const { data, error, isLoading } = Category.getAllCategorie()
-
-	if (error) throw new error
+	const { data, isLoading } = Category.getAllCategorie()
 
 	return (
 		<Fragment>

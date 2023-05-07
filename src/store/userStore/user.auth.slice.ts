@@ -24,7 +24,7 @@ export const userAuthSlice = createSlice({
 			state.token = ''
 
 			localStorage.setItem('role', 'guest')
-			localStorage.setItem('role', '')
+			localStorage.setItem('token', '')
 		},
 	},
 	extraReducers(builder) {

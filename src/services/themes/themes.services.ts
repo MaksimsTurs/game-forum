@@ -9,15 +9,13 @@ import {
 	IThemeData,
 } from './interfaces/themes.interfaces'
 
-const BASE_URL = (import.meta.env.MODE == 'development')
-? import.meta.env.VITE_DEV_SERVER_URL
-: import.meta.env.VITE_PROD_SERVER_URL
+
 
 const Themes = {
 	getAllThemes(id: string) {
 		const fetcher = async () => {
 			const { data } = await axios.get<IThemes>(
-				`${BASE_URL}/topic/${id}`
+				`https://game-forum-server.vercel.app/topic/${id}`
 			)
 
 			const categoryData = data.categoryData
@@ -40,7 +38,7 @@ const Themes = {
 	getSingleTheme(id: string) {
 		const fetcher = async () => {
 			const { data } = await axios.get<IThemeData>(
-				`${BASE_URL}/theme/${id}`
+				`https://game-forum-server.vercel.app/theme/${id}`
 			)
 			return data
 		}

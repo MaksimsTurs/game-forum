@@ -1,7 +1,7 @@
 //Inrefaces imports
 import { FC, Fragment } from 'react'
 import { AppDispatch, RootState } from '@/store/hook'
-import { IUserInfo } from '@/store/userStore/interfaces/user.interfaces'
+import { IUserData } from '@/store/userStore/interfaces/user.interfaces'
 
 //Components imports
 import Header from './components/Header/Header'
@@ -29,15 +29,13 @@ const UserDetail: FC = () => {
 		dispatch(userCheck(id))
 	}, [])
 
-	const { name, role, error, status } = useSelector<RootState, IUserInfo>(
+	const { name, role, isLoading } = useSelector<RootState, IUserData>(
 		state => state.userCheckSlice
 	)
 
-	if(error) throw error
-
 	return (
 		<Fragment>
-			{status === 'loading' ? (
+			{isLoading ? (
 				<Loader />
 			) : (
 				<Fragment>

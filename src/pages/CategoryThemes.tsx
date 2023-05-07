@@ -17,9 +17,7 @@ const CategoryThemes: FC = () => {
 	const { pathname } = useLocation()
 	const id = pathname.replace('/category/', '').split('/')[0]
 
-	const { categoryData, themeData, error, isLoading } = Themes.getAllThemes(id)
-
-	if (error) throw error
+	const { categoryData, themeData, isLoading } = Themes.getAllThemes(id)
 
 	return (
 		<Fragment>

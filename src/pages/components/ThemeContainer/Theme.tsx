@@ -28,10 +28,8 @@ const Theme: FC<IComponentProps> = ({ themedata }: IComponentProps) => {
 	const { pathname } = useLocation()
 	const id = pathname.replace('/theme/', '')
 	
-	const { data, error } = Comment.getAllComments(id)
+	const { data } = Comment.getAllComments(id)
 	
-	if (error) throw error
-
 	return (
 		<Fragment>
 			{themedata && (
