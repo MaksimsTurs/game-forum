@@ -11,7 +11,7 @@ import Loader from './components/Loader/Loader'
 import { useLocation } from 'react-router-dom'
 
 //Services imports
-import Themes from '../services/themes/themes.services'
+import Themes from '@/services/themes/themes.services'
 
 const CategoryThemes: FC = () => {
 	const { pathname } = useLocation()

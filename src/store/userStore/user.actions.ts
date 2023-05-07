@@ -1,14 +1,27 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 
-//Interfaces imports 
-import { IUserAuth, IUserId, IUserInfo, IUserLog, IUserReg } from './interfaces/user.interfaces'
+//Interfaces imports
+import {
+	IUserRegistration,
+	IUserId,
+	IUserData,
+	IUserLogin,
+} from './interfaces/user.interfaces'
 
-export const userAuth = createAsyncThunk<IUserAuth, IUserReg>(
-	'auth/reg',
+import { IRegistrationForm } from '@/pages/components/LoginForm/interfaces/form.interfaces'
+
+const BASE_URL =
+	import.meta.env.MODE === 'development'
+		? import.meta.env.VITE_DEV_SERVER_URL
+		: import.meta.env.VITE_PROD_SERVER_URL
+
+//Authentification action
+export const userRegistration = createAsyncThunk<IUserRegistration, IRegistrationForm>(
+	'auth/registration',
 	async (userData, thunkApi) => {
 		try {
-			const { data } = await axios.post(`https://game-forum-server.vercel.app/registration`, {
+			const { data } = await axios.post(`${BASE_URL}/registration`, {
 				userData,
 			})
 			return data
@@ -18,25 +31,31 @@ export const userAuth = createAsyncThunk<IUserAuth, IUserReg>(
 	}
 )
 
-export const userLogin = createAsyncThunk<IUserAuth, IUserLog>(
-  'auth/log',
-  async (userData, thunkApi) => {
+//Login into account action
+export const userLogin = createAsyncThunk<IUserRegistration, IUserLogin>(
+	'auth/login',
+	async ({ userData }) => {
 		try {
-			const { data } = await axios.post(`https://game-forum-server.vercel.app/login`, {
+			const { data } = await axios.post(`${BASE_URL}/login`, {
 				userData,
 			})
+
 			return data
 		} catch (error) {
-			return thunkApi.rejectWithValue(error)
+			if ((error as AxiosError).response?.status === 401) {
+				//@ts-ignore
+				return error.response.data
+			}
 		}
 	}
 )
 
-export const userCheck = createAsyncThunk<IUserInfo, IUserId>(
+//Data fetching for user detail page
+export const userCheck = createAsyncThunk<IUserData, IUserId>(
 	'auth/check',
 	async (id, thunkApi) => {
 		try {
-			const { data } = await axios.post(`https://game-forum-server.vercel.app/user/${id}`)
+			const { data } = await axios.post(`${BASE_URL}/user/${id}`)
 			return data
 		} catch (error) {
 			return thunkApi.rejectWithValue(error)

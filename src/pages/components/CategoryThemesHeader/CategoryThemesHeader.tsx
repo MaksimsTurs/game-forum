@@ -6,16 +6,18 @@ import { useLocation, Link } from 'react-router-dom'
 
 //Interfaces imports
 import { FC } from 'react'
+import { IThemeData } from '@/services/themes/interfaces/themes.interfaces'
 
 //Image imports
 import usericon from './img/user_icon.png?format=webp&preset=thumbnail'
 
 interface IComponentProps {
+	themedata?: IThemeData
 	title: string | undefined
-	description?: string
+	description?: string | undefined
 }
 
-const CategoryThemesHeader: FC<IComponentProps> = ({ title, description }: IComponentProps) => {
+const CategoryThemesHeader: FC<IComponentProps> = ({ title, themedata, description }: IComponentProps) => {
 	const { pathname } = useLocation()
 
 	return (
@@ -31,10 +33,11 @@ const CategoryThemesHeader: FC<IComponentProps> = ({ title, description }: IComp
 							className={style.header_author_icon}
 							src={usericon}
 							alt='User icon'
+							loading='lazy'
 						/>
 						<div>
 							<Link className={style.header_author_name} to={'/'}>
-								Ehren
+								{themedata?.author}
 							</Link>
 							<p className={style.header_date}>April 6, 2022 in News</p>
 						</div>

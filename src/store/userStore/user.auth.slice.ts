@@ -2,15 +2,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 //Interfaces imports
-import { IUserAuth } from './interfaces/user.interfaces'
+import { IUserRegistration } from './interfaces/user.interfaces'
 
 //Actions imports
-import { userAuth, userLogin } from './user.actions'
+import { userLogin, userRegistration } from './user.actions'
 
-const initialState: IUserAuth = {
+const initialState: IUserRegistration = {
 	role: localStorage.getItem('role') || 'guest',
 	token: localStorage.getItem('token') || '',
-	status: '',
+	isLoading: false,
 	error: '',
 }
 
@@ -18,44 +18,49 @@ export const userAuthSlice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {
-		logout: (_, { payload }) => {
-			(payload)
-			localStorage.setItem('token', payload)
-			localStorage.setItem('role', payload)
-		}
+		logout: (state, _) => {
+			//Log out from account
+			state.role = 'guest'
+			state.token = ''
+
+			localStorage.setItem('role', 'guest')
+			localStorage.setItem('role', '')
+		},
 	},
 	extraReducers(builder) {
 		builder
-		//Registration
-		.addCase(userAuth.pending, state => {
-			state.status = 'loading'
-		})
-		.addCase(userAuth.rejected, state => {
-			state.error = 'Problem by reistration'
-			state.status = 'error'
-		})
-		.addCase(userAuth.fulfilled, (state, { payload }) => {
-			localStorage.setItem('token', payload.token)
-			localStorage.setItem('role', payload.role)
+			//Authentication
+			.addCase(userRegistration.pending, state => {
+				state.isLoading = true
+			})
+			.addCase(userRegistration.rejected, (state, action) => {
+				state.error = action.error
+			})
+			.addCase(userRegistration.fulfilled, (state, { payload }) => {
+				state.role = payload.role
+				state.token = payload.token
 
-			state.status = 'succes'
-			window.open('/', '_self')
-		})
-		//Login
-		.addCase(userLogin.pending, state => {
-			state.status = 'loading'
-		})
-		.addCase(userLogin.rejected, state => {
-			state.error = 'Problem by reistration'
-			state.status = 'error'
-		})
-		.addCase(userLogin.fulfilled, (state, { payload }) => {
-			localStorage.setItem('token', payload.token)
-			localStorage.setItem('role', payload.role)
+				localStorage.setItem('token', payload.token)
+				localStorage.setItem('role', payload.role)
 
-			state.status = 'succes'
-			window.open('/', '_self')
-		})
+				state.isLoading = false
+			})
+			//Login
+			.addCase(userLogin.pending, state => {
+				state.isLoading = true
+			})
+			.addCase(userLogin.rejected, (state, action) => {
+				state.error = action.error
+			})
+			.addCase(userLogin.fulfilled, (state, { payload }) => {
+				state.role = payload.role
+				state.token = payload.token
+
+				localStorage.setItem('token', payload.token)
+				localStorage.setItem('role', payload.role)
+
+				state.isLoading = false
+			})
 	},
 })
 

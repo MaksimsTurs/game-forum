@@ -8,5 +8,6 @@ export interface ICategory {
     author_id: string,
     author_icon: string,
     public_data: string,
+    theme_id: string
   }
 }

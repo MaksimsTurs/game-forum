@@ -1,7 +1,7 @@
 //Inrefaces imports
 import { FC, Fragment } from 'react'
-import { AppDispatch, RootState } from '../store/hook'
-import { IUserInfo } from '../store/userStore/interfaces/user.interfaces'
+import { AppDispatch, RootState } from '@/store/hook'
+import { IUserInfo } from '@/store/userStore/interfaces/user.interfaces'
 
 //Components imports
 import Header from './components/Header/Header'
@@ -17,7 +17,7 @@ import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 //Actions imports
-import { userCheck } from '../store/userStore/user.actions'
+import { userCheck } from '@/store/userStore/user.actions'
 
 const UserDetail: FC = () => {
 	const { pathname } = useLocation()

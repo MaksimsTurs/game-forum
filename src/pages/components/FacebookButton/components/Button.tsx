@@ -18,6 +18,7 @@ const Button: FC = () => {
       className={style.facebok_image_container}
       src={facebookicon}
       alt='Facebook icon'
+      loading='lazy'
     />
     <div className={style.facebok_text_container}>
       <p>Sign in with Facebook</p>

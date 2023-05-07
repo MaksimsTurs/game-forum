@@ -8,10 +8,10 @@ import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
 import CategoryThemesHeader from './components/CategoryThemesHeader/CategoryThemesHeader'
 import Theme from './components/ThemeContainer/Theme'
+import Loader from './components/Loader/Loader'
 
 //Services imports
-import Themes from '../services/themes/themes.services'
-import Loader from './components/Loader/Loader'
+import Themes from '@/services/themes/themes.services'
 
 const SingleTheme: FC = () => {
 	const { pathname } = useLocation()
@@ -29,8 +29,8 @@ const SingleTheme: FC = () => {
 				<Fragment>
 					<main>
 						<HistoryBoard themetitle={data?.title} />
-						<CategoryThemesHeader title={data?.title} />
-						<Theme data={data} />
+						<CategoryThemesHeader themedata={data} title={data?.title}/>
+						<Theme themedata={data}/>
 						<HistoryBoard themetitle={data?.title} />
 					</main>
 				</Fragment>

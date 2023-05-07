@@ -1,29 +1,22 @@
-export interface IUserAuth {
+export interface IUserRegistration {
 	role: string
 	token: string
-	status?: string
-	error?: string
+	isLoading: boolean
+	error: unknown
 }
 
-export interface IUserReg {
-	name: string
-	email: string
-	password: string
-	confirmPassword: string
-	updateNotification: boolean
-	terms: boolean
+export interface IUserLogin {
+	userData: {
+		name: string,
+		password: string
+	}
 }
 
-export interface IUserLog {
-	name: string
-	password: string
-}
-
-export interface IUserInfo {
+export interface IUserData {
 	role: string
 	name: string
-	status?: string
-	error?: string
+	isLoading: boolean
+	error: unknown
 }
 
 export interface IUserId {

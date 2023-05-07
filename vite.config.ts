@@ -1,12 +1,31 @@
-import { defineConfig } from 'vite'
-import { imagetools } from 'vite-imagetools'
-import { createHtmlPlugin } from 'vite-plugin-html'
-import imagePresets, { widthPreset } from 'vite-plugin-image-presets'
+import { defineConfig as viteConfig } from 'vite'
 
-export default defineConfig({
+//Vite HTML minification
+import { createHtmlPlugin as viteHTMLPlugins } from 'vite-plugin-html'
+
+//Vite Image optimization and convertion
+import { imagetools as viteImageTools } from 'vite-imagetools'
+import { ViteImageOptimizer as viteImageOptimizer } from 'vite-plugin-image-optimizer'
+import viteImagePresets, { widthPreset } from 'vite-plugin-image-presets'
+
+//Font optimization
+import viteWebFont from 'vite-plugin-webfont-dl'
+
+//CSS Optimization
+import { optimizeCssModules as viteOptimizeCSSModule } from 'vite-plugin-optimize-css-modules'
+
+//Native Node.js modules
+import path from 'path'
+
+export default viteConfig({
 	appType: 'spa',
 	server: {
 		host: true,
+	},
+	resolve: {
+		alias: {
+			'@': path.resolve(__dirname, './src/'),
+		},
 	},
 	build: {
 		minify: 'terser',
@@ -26,7 +45,7 @@ export default defineConfig({
 			output: {
 				assetFileNames: (assetInfo: { name: any }) => {
 					let extType = assetInfo.name!.split('.').at(1)
-					if (/png|jpe?g|webp/i.test(String(extType))) {
+					if (/png|jpe?g|webp/i.test(extType)) {
 						extType = 'img'
 					}
 					return `assets/${extType}/[name]-[hash][extname]`
@@ -43,15 +62,24 @@ export default defineConfig({
 		},
 	},
 	plugins: [
-		imagetools({
-			removeMetadata: true,
+		viteImageTools(),
+		viteHTMLPlugins({ minify: true }),
+		viteWebFont(),
+		viteOptimizeCSSModule(),
+		viteImageOptimizer({
+			test: /\.(webp)$/i,
+			webp: {
+				quality: 1,
+				alphaQuality: 1,
+				effort: 6,
+				smartSubsample: true,
+			},
 		}),
-		createHtmlPlugin({ minify: true }),
-		imagePresets({
+		viteImagePresets({
 			thumbnail: widthPreset({
 				class: 'img thumb',
 				loading: 'lazy',
-				widths: [40, 90],
+				widths: [30, 80],
 				formats: {
 					webp: { quality: 10 },
 				},

@@ -22,7 +22,7 @@ const UserHeader: FC<IComponentProps> = ({ userData }: IComponentProps) => {
 		<div className={style.detail_header}>
 			<div className={style.detail_header_top}>
 				<div className={style.detail_header_top_body}>
-					<img src={usericon} alt='User icon' />
+					<img src={usericon} alt='User icon' loading='lazy'/>
 					<div className={style.detail_user_data}>
 						<h2>{name}</h2>
 						<h3>{role === 'admin' ? `Root ${role[0].toUpperCase()}${role.split('a')[1]}` : 'Member'}</h3>

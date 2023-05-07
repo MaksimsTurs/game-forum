@@ -72,16 +72,18 @@ textarea {
   background-color: transparent;
 }
 
-input {
-  background: transparent;
-}
-
 input::-ms-clear {
   display: none;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
+  background: transparent;
   outline: none;
+}
+
+textarea {
+  resize: none;
 }
 
 input[type=file],

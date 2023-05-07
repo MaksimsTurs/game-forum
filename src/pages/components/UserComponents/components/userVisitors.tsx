@@ -23,6 +23,7 @@ const UserVisitors: FC = () => {
 						className={style.visitors_followers_icon}
 						src={usericon}
 						alt='User icon'
+						loading='lazy'
 					/>
 					<img
 						className={style.visitors_followers_icon}

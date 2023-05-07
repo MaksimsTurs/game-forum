@@ -6,7 +6,7 @@ export interface ICategoryData {
 
 export interface IThemeData {
 	_id: string
-	topic_id: string
+	topics_id: string
 	title: string
 	author: string
 	text: string

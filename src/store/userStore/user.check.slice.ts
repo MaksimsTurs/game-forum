@@ -5,13 +5,13 @@ import { createSlice } from '@reduxjs/toolkit'
 import { userCheck } from './user.actions'
 
 //Interfaces imports
-import { IUserInfo } from './interfaces/user.interfaces'
+import { IUserData } from './interfaces/user.interfaces'
 
-const initialState: IUserInfo = {
+const initialState: IUserData = {
+	role: 'guest',
 	name: '',
-	role: '',
-	status: 'loading',
-	error: '',
+	isLoading: false,
+	error: null,
 }
 
 const userCheckSlice = createSlice({
@@ -21,13 +21,13 @@ const userCheckSlice = createSlice({
 	extraReducers(builder) {
 		builder
 			.addCase(userCheck.pending, state => {
-				state.status = 'loading'
+				state.isLoading = true
 			})
-			.addCase(userCheck.rejected, state => {
-				state.error = 'Problem by data fetchig'
+			.addCase(userCheck.rejected, (state, { payload }) => {
+				state.error = payload
 			})
 			.addCase(userCheck.fulfilled, (state, { payload }) => {
-				state.status = 'succes'
+				state.isLoading= false
 				state.name = payload.name
 				state.role = payload.role
 			})

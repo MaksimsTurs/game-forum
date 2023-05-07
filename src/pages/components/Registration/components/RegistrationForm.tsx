@@ -7,11 +7,11 @@ import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 //Actions imports
-import { userAuth } from '../../../../store/userStore/user.actions.ts'
+import { userRegistration } from '@/store/userStore/user.actions.ts'
 
 //Interfaces imports
 import { IRegistrationForm } from '../interfaces/form.interfaces.ts'
-import { AppDispatch } from '../../../../store/hook.ts'
+import { AppDispatch } from '@/store/hook.ts'
 import { FC } from 'react'
 
 const RegistrationForm: FC = () => {
@@ -25,7 +25,7 @@ const RegistrationForm: FC = () => {
 	} = useForm<IRegistrationForm>()
 	const registration: SubmitHandler<IRegistrationForm> = async userData => {
 		//@ts-ignore
-		dispatch(userAuth(userData))
+		dispatch(userRegistration(userData))
 		reset()
 	}
 
@@ -48,6 +48,7 @@ const RegistrationForm: FC = () => {
 					<input
 						className={style.reg_form_input}
 						type='text'
+						placeholder='Name'
 						{...register('name', {
 							required: 'Name is a required field',
 						})}
@@ -65,6 +66,7 @@ const RegistrationForm: FC = () => {
 					<input
 						className={style.reg_form_input}
 						type='text'
+						placeholder='E-mail'
 						{...register('email', {
 							required: 'Email is a required field',
 						})}
@@ -82,6 +84,7 @@ const RegistrationForm: FC = () => {
 					<input
 						className={style.reg_form_input}
 						type='password'
+						placeholder='Password'
 						{...register('password', {
 							required: 'Password is a required field',
 						})}
@@ -99,6 +102,7 @@ const RegistrationForm: FC = () => {
 					<input
 						className={style.reg_form_input}
 						type='password'
+						placeholder='Confirm Password'
 						{...register('confirmPassword', {
 							required: 'Confirm password is a required fiel',
 						})}

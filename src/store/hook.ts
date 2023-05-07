@@ -1,4 +1,4 @@
-//Interfaces
+//Interfaces imports
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
 //Node_modules imports

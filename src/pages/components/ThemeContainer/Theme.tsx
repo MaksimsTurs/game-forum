@@ -6,30 +6,40 @@ import style from './Theme.module.scss'
 import usericon from './img/user_icon.png?format=webp&preset=thumbnail'
 
 //Node_modules imports
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 //Interfaces imports
 import { FC, Fragment } from 'react'
-import { IThemeData } from '../../../services/themes/interfaces/themes.interfaces'
+import { IThemeData } from '@/services/themes/interfaces/themes.interfaces'
+import { IComment } from '@/services/comment/interfaces/comment.interfaces'
 
 //Components imports
 import ThemeComment from './components/ThemeComment'
 import ThemeCommentForm from './components/ThemeCommentForm'
 
+//Services imports
+import Comment from '@/services/comment/comment.services'
+
 interface IComponentProps {
-	data: IThemeData | undefined
+	themedata: IThemeData | undefined
 }
 
-const Theme: FC<IComponentProps> = ({ data }: IComponentProps) => {
+const Theme: FC<IComponentProps> = ({ themedata }: IComponentProps) => {
+	const { pathname } = useLocation()
+	const id = pathname.replace('/theme/', '')
+	
+	const { data, error } = Comment.getAllComments(id)
+	
+	if (error) throw error
 
 	return (
 		<Fragment>
-			{data && (
+			{themedata && (
 				<div className={style.theme_container}>
 					<article className={style.theme_content}>
 						<div className={style.theme_body}>
 							<section className={style.theme_user_container}>
-								<h2 className={style.theme_user_name}>{data.author}</h2>
+								<h2 className={style.theme_user_name}>{themedata.author}</h2>
 								<Link className={style.theme_user_icon} to={'/'}>
 									<svg
 										className={style.theme_author_pane_bange}
@@ -54,18 +64,20 @@ const Theme: FC<IComponentProps> = ({ data }: IComponentProps) => {
 									</p>
 								</div>
 								<div>
-									<p className={style.theme_theme_text}>{data.text}</p>
+									<p className={style.theme_theme_text}>{themedata.text}</p>
 								</div>
 							</aside>
 						</div>
 						<div className={style.theme_history_container}>
 							<p className={style.theme_history}>
-								<span>1 yr</span> {data.author} changed the title to Theme
+								<span>1 yr</span> {themedata.author} changed the title to Theme
 								updates: 4.6.12
 							</p>
 						</div>
 					</article>
-					<ThemeComment />
+					{data?.map((comment: IComment) => (
+						<ThemeComment key={comment._id} comment={comment} />
+					))}
 				</div>
 			)}
 			<ThemeCommentForm />

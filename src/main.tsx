@@ -1,21 +1,20 @@
-import './styles/reset.scss'
+import '@/styles/reset.scss'
 
 //Node_modules imports
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
-import { HashRouter, BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import { Suspense, lazy } from 'react'
 
 //Store imports
-import store from './store/hook'
+import store from '@/store/hook'
 
 //Components imports
-const Home = lazy(() => import('./pages/Home.tsx'))
-const CategoryThemes = lazy(() => import('./pages/CategoryThemes.tsx'))
-const SingleTheme = lazy(() => import('./pages/SingleTheme.tsx'))
-const Registration = lazy(() => import('./pages/Regestration.tsx'))
-const Loader = lazy(() => import('./pages/components/Loader/Loader.tsx'))
-const UserDetail = lazy(() => import('./pages/UserDetail.tsx'))
+const Home = lazy(() => import('@/pages/Home.tsx'))
+const CategoryThemes = lazy(() => import('@/pages/CategoryThemes.tsx'))
+const SingleTheme = lazy(() => import('@/pages/SingleTheme.tsx'))
+const Registration = lazy(() => import('@/pages/Regestration.tsx'))
+const UserDetail = lazy(() => import('@/pages/UserDetail.tsx'))
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
 	<HashRouter>
@@ -24,7 +23,7 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
 				<Route
 					path='/'
 					element={
-						<Suspense fallback={<Loader/>}>
+						<Suspense>
 							<Home />
 						</Suspense>
 					}
@@ -32,7 +31,7 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
 				<Route
 					path='/category/:id/:title'
 					element={
-						<Suspense fallback={<Loader/>}>
+						<Suspense>
 							<CategoryThemes />
 						</Suspense>
 					}
@@ -40,7 +39,7 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
 				<Route
 					path='/theme/:id'
 					element={
-						<Suspense fallback={<Loader/>}>
+						<Suspense>
 							<SingleTheme />
 						</Suspense>
 					}
@@ -48,7 +47,7 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
 				<Route
 					path='/registration'
 					element={
-						<Suspense fallback={<Loader />}>
+						<Suspense>
 							<Registration />
 						</Suspense>
 					}
@@ -56,7 +55,7 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
 				<Route
 					path='/user/:id'
 					element={
-						<Suspense fallback={<Loader/>}>
+						<Suspense>
 							<UserDetail />
 						</Suspense>
 					}

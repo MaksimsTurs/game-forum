@@ -6,7 +6,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { FC } from 'react'
 
 //Utils imports
-import createBreadcrumbs from '../../../utils/breadcrumbs'
+import createBreadcrumbs from '@/utils/breadcrumbs'
 
 interface IComponentProps {
 	themetitle?: string | undefined

@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import usericon from './../img/user_icon.png?format=webp&preset=thumbnail '
 
 import { FC } from 'react'
-import { ICategory } from '../../../../services/category/interfaces/category.interfaces'
+import { ICategory } from '@/services/category/interfaces/category.interfaces'
 
 interface IComponentProps {
 	data: ICategory
@@ -26,6 +26,7 @@ const CategoryBody: FC<IComponentProps> = ({ data, src }: IComponentProps) => {
 						alt='News Icon'
 						width={30}
 						height={30}
+						loading='lazy'
 						style={{ marginRight: 0.5 + 'rem' }}
 					/>
 					<div className={style.category_category_info}>
@@ -55,7 +56,7 @@ const CategoryBody: FC<IComponentProps> = ({ data, src }: IComponentProps) => {
 					/>
 				</Link>
 				<div className={style.category_last_comment}>
-					<Link className={style.category_category_link} to={``}>
+					<Link className={style.category_category_link} to={`theme/${data.last_comment.theme_id || ''}`}>
 						{data.last_comment.title}
 					</Link>
 					<p className={style.category_category_description}>

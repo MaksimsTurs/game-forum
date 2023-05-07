@@ -85,6 +85,9 @@
   .theme_history_container {
     padding: 0.6rem 0rem 0.6rem 8.5rem;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     &::before {
       content: '';
@@ -95,6 +98,22 @@
       height: 100%;
       z-index: -1;
       background-color: rgba(237, 242, 247);
+    }
+  }
+
+  .theme_delete_button {
+    font-size: 0.7rem;
+    background-color: rgb(168, 0, 0);
+    border-radius: $def-container-border-radius;
+    color: white;
+    font-weight: bolder;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 0.4rem;
+
+    &:hover {
+      transition: all 0.3s ease;
+      background-color: $def-error-color;
     }
   }
 

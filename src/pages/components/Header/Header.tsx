@@ -12,11 +12,12 @@ import { useDispatch, useSelector } from 'react-redux'
 
 //Interfaces imports
 import { FC, Fragment } from 'react'
-import { AppDispatch, RootState } from '../../../store/hook'
+import { AppDispatch, RootState } from '@/store/hook'
 
 //Reducers imports
-import { logout } from '../../../store/userStore/user.auth.slice'
+import { logout } from '@/store/userStore/user.auth.slice'
 
+//Lazy components
 const LoginForm = lazy(() => import('../LoginForm/LoginForm'))
 
 const Header: FC = () => {
@@ -47,7 +48,6 @@ const Header: FC = () => {
 
 	const leavFromAccount = () => {
 		dispatch(logout(''))
-		window.open('/', '_self')
 	}
 
 	return (

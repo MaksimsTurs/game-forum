@@ -11,10 +11,10 @@ import { useDispatch } from 'react-redux'
 //Interfaces imports
 import { ILoginForm } from './interfaces/form.interfaces.ts'
 import { FC } from 'react'
-import { AppDispatch } from '../../../store/hook.ts'
+import { AppDispatch } from '@/store/hook.ts'
 
-//Actions imports 
-import { userLogin } from '../../../store/userStore/user.actions.ts'
+//Actions imports
+import { userLogin } from '@/store/userStore/user.actions.ts'
 
 interface IComponentProps {
 	state: boolean
@@ -25,8 +25,7 @@ const LoginForm: FC<IComponentProps> = ({ state }: IComponentProps) => {
 
 	const { register, handleSubmit, reset } = useForm<ILoginForm>()
 	const login: SubmitHandler<ILoginForm> = async userData => {
-		//@ts-ignore
-		dispatch(userLogin(userData))
+		dispatch(userLogin({ userData }))
 		reset()
 	}
 
