@@ -1,4 +1,4 @@
-@import '../../../../styles/variabels.scss';
+@import '@/styles/variabels.scss';
 
 .header_form {
   display: flex;
@@ -17,7 +17,7 @@
     display: flex;
 
     &:hover {
-      background: rgb(130, 130, 130);
+      background: $def-font-color-grey;
       color: white;
     }
   }
@@ -44,7 +44,8 @@
     background-color: white;
     padding: 0.5rem;
     width: 8rem;
-    border-radius: 6px;
+    border-radius: $def-container-border-radius;
+    box-shadow: $def-container-shadow;
     transition: all 0.2s ease;
 
     opacity: 0;
@@ -68,7 +69,7 @@
     padding: 0.4rem;
     margin-bottom: 0.25rem;
     font-size: 0.8rem;
-    border-radius: 6px;
+    border-radius: $def-container-border-radius;
     transition: all 0.2s ease;
 
     &:hover {

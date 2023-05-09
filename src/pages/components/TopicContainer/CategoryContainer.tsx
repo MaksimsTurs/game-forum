@@ -1,3 +1,6 @@
+//SCSS Module imports
+import style from './CategoryContainer.module.scss'
+
 //Components imports
 import ForumStatistic from './components/ForumStatistic.tsx'
 import Comments from './components/LastComments'
@@ -8,9 +11,6 @@ import { FC, Fragment, useState } from 'react'
 
 //Services imports
 import Category from '../../../services/category/category.services.ts'
-
-//SCSS Module imports
-import style from './CategoryContainer.module.scss'
 
 //Image imports
 import bugicon from './img/bug_icon.png?format=webp&preset=thumbnail'

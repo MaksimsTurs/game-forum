@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 //Actions imports
-import { userCheck } from './user.actions'
+import userCheck from './actions/user.check'
 
 //Interfaces imports
 import { IUserData } from './interfaces/user.interfaces'

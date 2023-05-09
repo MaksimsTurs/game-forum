@@ -11,10 +11,10 @@ import { useDispatch } from 'react-redux'
 //Interfaces imports
 import { ILoginForm } from './interfaces/form.interfaces.ts'
 import { FC } from 'react'
-import { AppDispatch } from '@/store/hook.ts'
+import { AppDispatch } from '@/store/store.ts'
 
 //Actions imports
-import { userLogin } from '@/store/userStore/user.actions.ts'
+import userLogin from '@/store/userStore/actions/user.login.action.ts'
 
 interface IComponentProps {
 	state: boolean

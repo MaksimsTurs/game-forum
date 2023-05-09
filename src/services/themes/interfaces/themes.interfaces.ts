@@ -1,7 +1,7 @@
 export interface ICategoryData {
 	_id: string
 	title: string
-	descrption: string
+	description: string
 }
 
 export interface IThemeData {

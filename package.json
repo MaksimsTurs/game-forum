@@ -1,7 +1,6 @@
 {
   "name": "game-forum",
-  "packageManager": "yarn@3.5.1",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -17,9 +16,11 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.11.1",
     "redux": "^4.2.1",
-    "swr": "^2.1.5"
+    "swr": "^2.1.5",
+    "vite-plugin-checker": "^0.6.0"
   },
   "devDependencies": {
+    "@types/node": "^20.1.1",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
     "cssnano": "^6.0.1",
@@ -27,7 +28,7 @@
     "postcss-combine-duplicated-selectors": "^10.0.3",
     "postcss-preset-env": "^8.3.2",
     "sass": "^1.62.1",
-    "terser": "^5.17.1",
+    "terser": "^5.17.3",
     "typescript": "5.0.4",
     "vite": "^4.3.5",
     "vite-imagetools": "^5.0.3",

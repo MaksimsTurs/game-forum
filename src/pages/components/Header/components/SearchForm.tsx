@@ -20,6 +20,11 @@ const SearchForm: FC = () => {
 		setFilter(event.target.textContent)
 	}
 
+	const changeInputValue = (event: any) => {
+		setInputValue(event.target.value)
+	}
+
+	//TODO: Create custom hook "useModal" for Modals containers
 	const showFilter = (event: any) => {
 		if (event.type === 'mouseover') {
 			setVisible(true)
@@ -31,11 +36,9 @@ const SearchForm: FC = () => {
 	useEffect(() => {
 		const clickHandler = (event: any) => {
 			if (inputValue.trim() !== '') {
-				setVisible(true)
-
-					if (formRef.current && !formRef.current.contains(event.target)) {
-						setVisible(false)
-				}
+				return
+			} else if (formRef.current && !formRef.current.contains(event.target)) {
+				setVisible(false)
 			}
 		}
 
@@ -57,7 +60,7 @@ const SearchForm: FC = () => {
 				className={style.header_form_input}
 				type='text'
 				value={inputValue}
-				onChange={event => setInputValue(event.target.value)}
+				onChange={changeInputValue}
 			/>
 			<div
 				className={

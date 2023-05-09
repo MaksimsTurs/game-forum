@@ -7,11 +7,11 @@ import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 //Actions imports
-import { userRegistration } from '@/store/userStore/user.actions.ts'
+import userRegistration from '@/store/userStore/actions/user.registration.ts'
 
 //Interfaces imports
 import { IRegistrationForm } from '../interfaces/form.interfaces.ts'
-import { AppDispatch } from '@/store/hook.ts'
+import { AppDispatch } from '@/store/store.ts'
 import { FC } from 'react'
 
 const RegistrationForm: FC = () => {
@@ -24,7 +24,6 @@ const RegistrationForm: FC = () => {
 		reset,
 	} = useForm<IRegistrationForm>()
 	const registration: SubmitHandler<IRegistrationForm> = async userData => {
-		//@ts-ignore
 		dispatch(userRegistration(userData))
 		reset()
 	}

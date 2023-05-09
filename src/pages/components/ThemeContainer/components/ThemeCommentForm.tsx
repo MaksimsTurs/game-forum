@@ -1,22 +1,24 @@
 //SCSS Module imports
 import style from '../scss/ThemeCommentForm.module.scss'
 
-//React imports
+//Node_modules imports
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 //Interfaces imports
 import { FC } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { IComment } from '@/services/comment/interfaces/comment.interfaces'
+import { IComment, ICommentState } from '@/store/commentStore/interfaces/comment.interfaces'
+import { AppDispatch, RootState } from '@/store/store'
 
-//Services imports
-import Comment from '@/services/comment/comment.services'
+//Actions imports
+import createNewComment from '@/store/commentStore/actions/comment.create.action'
 
 const ThemeCommentForm: FC = () => {
 	const [isActive, setActiv] = useState<boolean>(false)
 	const [isDisabled, setDisabled] = useState<boolean>(false)
-	const [error, setError] = useState<string>('')
+	const dispatch = useDispatch<AppDispatch>()
 
 	const { pathname } = useLocation()
 
@@ -26,30 +28,26 @@ const ThemeCommentForm: FC = () => {
 
 	const { register, handleSubmit, reset } = useForm<IComment>()
 
+	const { error } = useSelector<RootState, ICommentState>(state => state.commentSlice)
+
 	const createComment: SubmitHandler<IComment> = async ({ text }) => {
 		setDisabled(true)
-		const token = localStorage.getItem('token')
-		const role = localStorage.getItem('role')
 
-		const data = {
+		const token = localStorage.getItem('token') || 'undefined'
+		const commentdata = {
 			text,
 			theme_id: pathname.replace('/theme/', ''),
 		}
 
-		switch (role) {
-			case 'guest':
-				setDisabled(true)
-				setError('You have no permision to do this, pls Log-in or Create a new account!')
-				break
-			case 'admin':
-				await Comment.createComment(token!, data)
-				break
-			case 'user':
-				await Comment.createComment(token!, data)
-				break
-		}
-
+		dispatch(createNewComment({ token, commentdata }))
 		reset()
+		setTimeout(() => {
+			if(!error) {
+				setDisabled(false)
+			} else {
+				setDisabled(true)
+			}
+		}, 2000)
 	}
 
 	return (
@@ -96,7 +94,7 @@ const ThemeCommentForm: FC = () => {
 				>
 					Submit
 				</button>
-				{error && <div className={style.comment_error}>{error}</div>}
+				{error ? <div className={style.comment_error}>{String(error)}</div> : null}
 			</div>
 		</form>
 	)

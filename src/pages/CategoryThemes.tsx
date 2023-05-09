@@ -19,6 +19,8 @@ const CategoryThemes: FC = () => {
 
 	const { categoryData, themeData, isLoading } = Themes.getAllThemes(id)
 
+	
+
 	return (
 		<Fragment>
 			<Header />
@@ -30,7 +32,7 @@ const CategoryThemes: FC = () => {
 						<HistoryBoard />
 						<CategoryThemesHeader
 							title={categoryData?.title}
-							description={categoryData?.descrption}
+							description={categoryData?.description}
 						/>
 						<CategoryThemesContent themes={themeData} />
 						<HistoryBoard themetitle={categoryData?.title} />

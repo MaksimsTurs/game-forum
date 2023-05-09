@@ -18,7 +18,7 @@ const SingleTheme: FC = () => {
 	const id = pathname.replace('/theme/', '')
 
 	const { data, isLoading } = Themes.getSingleTheme(id)
-
+	
 	return (
 		<Fragment>
 			<Header />
@@ -27,7 +27,7 @@ const SingleTheme: FC = () => {
 				<Fragment>
 					<main>
 						<HistoryBoard themetitle={data?.title} />
-						<CategoryThemesHeader themedata={data} title={data?.title}/>
+						<CategoryThemesHeader title={data?.title} themedata={data}/>
 						<Theme themedata={data}/>
 						<HistoryBoard themetitle={data?.title} />
 					</main>

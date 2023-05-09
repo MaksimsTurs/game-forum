@@ -2,23 +2,27 @@
 import style from './Theme.module.scss'
 
 //Image imports
-//@ts-ignore
 import usericon from './img/user_icon.png?format=webp&preset=thumbnail'
 
 //Node_modules imports
 import { Link, useLocation } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { FC, Fragment, useEffect } from 'react'
 
 //Interfaces imports
-import { FC, Fragment } from 'react'
 import { IThemeData } from '@/services/themes/interfaces/themes.interfaces'
-import { IComment } from '@/services/comment/interfaces/comment.interfaces'
+import { RootState, AppDispatch } from '@/store/store'
+import {
+	IComment,
+	ICommentState,
+} from '@/store/commentStore/interfaces/comment.interfaces'
 
 //Components imports
 import ThemeComment from './components/ThemeComment'
 import ThemeCommentForm from './components/ThemeCommentForm'
 
-//Services imports
-import Comment from '@/services/comment/comment.services'
+//Actions imports
+import getAllComments from '@/store/commentStore/actions/comment.getall.action'
 
 interface IComponentProps {
 	themedata: IThemeData | undefined
@@ -27,17 +31,25 @@ interface IComponentProps {
 const Theme: FC<IComponentProps> = ({ themedata }: IComponentProps) => {
 	const { pathname } = useLocation()
 	const id = pathname.replace('/theme/', '')
-	
-	const { data } = Comment.getAllComments(id)
-	
+
+	const dispatch = useDispatch<AppDispatch>()
+
+	const { comments } = useSelector<RootState, ICommentState>(
+		state => state.commentSlice
+	)
+
+	useEffect(() => {
+		dispatch(getAllComments(id))
+	}, [])
+
 	return (
 		<Fragment>
-			{themedata && (
+			{
 				<div className={style.theme_container}>
 					<article className={style.theme_content}>
 						<div className={style.theme_body}>
 							<section className={style.theme_user_container}>
-								<h2 className={style.theme_user_name}>{themedata.author}</h2>
+								<h2 className={style.theme_user_name}>{themedata?.author}</h2>
 								<Link className={style.theme_user_icon} to={'/'}>
 									<svg
 										className={style.theme_author_pane_bange}
@@ -52,7 +64,7 @@ const Theme: FC<IComponentProps> = ({ themedata }: IComponentProps) => {
 										placeholder='blur'
 									/>
 								</Link>
-								<p className={style.theme_user_role}>Root Admin</p>
+								<p className={style.theme_user_role}>Root Adim</p>
 								<p className={style.theme_max_replies}>&#128172; 21.4K</p>
 							</section>
 							<aside>
@@ -62,22 +74,22 @@ const Theme: FC<IComponentProps> = ({ themedata }: IComponentProps) => {
 									</p>
 								</div>
 								<div>
-									<p className={style.theme_theme_text}>{themedata.text}</p>
+									<p className={style.theme_theme_text}>{themedata?.text}</p>
 								</div>
 							</aside>
 						</div>
 						<div className={style.theme_history_container}>
 							<p className={style.theme_history}>
-								<span>1 yr</span> {themedata.author} changed the title to Theme
+								<span>1 yr</span> {themedata?.author} changed the title to Theme
 								updates: 4.6.12
 							</p>
 						</div>
 					</article>
-					{data?.map((comment: IComment) => (
+					{comments?.map((comment: IComment) => (
 						<ThemeComment key={comment._id} comment={comment} />
 					))}
 				</div>
-			)}
+			}
 			<ThemeCommentForm />
 		</Fragment>
 	)

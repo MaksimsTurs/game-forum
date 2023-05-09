@@ -3,30 +3,33 @@ import style from '../Theme.module.scss'
 
 //Interfaces imports
 import { FC } from 'react'
-import { IComment } from '@/services/comment/interfaces/comment.interfaces'
-import { RootState } from '@/store/hook'
+import { RootState, AppDispatch } from '@/store/store'
+import { IUserRegistration } from '@/store/userStore/interfaces/user.interfaces'
+import { IComment } from '@/store/commentStore/interfaces/comment.interfaces'
 
 //Node_modules imports
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 //Image imports
 import usericon from '../img/user_icon.png?format=webp&preset=thumbnail'
+
+//Actions imports
+import deleteComment from '@/store/commentStore/actions/comment.delete.action'
 
 interface IComponentProps {
 	comment: IComment
 }
 
 const ThemeComment: FC<IComponentProps> = ({ comment }: IComponentProps) => {
-	const role = useSelector<RootState>(state => state.userAuthSlice.role)
-	const token = useSelector<RootState>(state => state.userAuthSlice.token)
+	const dispatch = useDispatch<AppDispatch>()
 
-	const deleteThisComment = async () => {
-		const module = await import(
-			'@/utils/deleteComment'
-		)
+	const { role } = useSelector<RootState, IUserRegistration>(state => state.userAuthSlice)
+	const _id = comment._id
 
-		await module.default(comment._id, role, token)
+	const deletecomment = () => {
+		const body = { role, _id }
+		dispatch(deleteComment(body))
 	}
 
 	return (
@@ -67,7 +70,7 @@ const ThemeComment: FC<IComponentProps> = ({ comment }: IComponentProps) => {
 					4.6.12
 				</p>
 				{role === 'admin' ? (
-					<p className={style.theme_delete_button} onClick={deleteThisComment}>
+					<p className={style.theme_delete_button} onClick={deletecomment}>
 						Delete this Comment
 					</p>
 				) : null}

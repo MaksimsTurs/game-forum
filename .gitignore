@@ -1,12 +1,11 @@
 #NPM Packages
 package-lock.json
 node_modules
-.pnp.cjs
-.pnp.loader.mjs
-.yarn
-
-#Config
-.editorconfig
 
 #Build
 build
+
+#Vite Typescript plugin
+vite.config.d.ts
+vite.config.js
+tsconfig.node.tsbuildinfo

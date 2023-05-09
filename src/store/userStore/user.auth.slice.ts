@@ -5,7 +5,8 @@ import { createSlice } from '@reduxjs/toolkit'
 import { IUserRegistration } from './interfaces/user.interfaces'
 
 //Actions imports
-import { userLogin, userRegistration } from './user.actions'
+import userRegistration from './actions/user.registration'
+import userLogin from './actions/user.login.action'
 
 const initialState: IUserRegistration = {
 	role: localStorage.getItem('role') || 'guest',
@@ -14,7 +15,7 @@ const initialState: IUserRegistration = {
 	error: '',
 }
 
-export const userAuthSlice = createSlice({
+const userAuthSlice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {

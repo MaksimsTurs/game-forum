@@ -4,10 +4,10 @@ import '@/styles/reset.scss'
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { HashRouter, Routes, Route } from 'react-router-dom'
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, StrictMode } from 'react'
 
 //Store imports
-import store from '@/store/hook'
+import store from '@/store/store'
 
 //Components imports
 const Home = lazy(() => import('@/pages/Home.tsx'))
@@ -17,6 +17,7 @@ const Registration = lazy(() => import('@/pages/Regestration.tsx'))
 const UserDetail = lazy(() => import('@/pages/UserDetail.tsx'))
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
+	<StrictMode>
 	<HashRouter>
 		<Provider store={store}>
 			<Routes>
@@ -63,4 +64,5 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
 			</Routes>
 		</Provider>
 	</HashRouter>
+	</StrictMode>
 )

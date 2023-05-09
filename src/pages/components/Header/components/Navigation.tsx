@@ -1,8 +1,8 @@
-//Node_modules imports
-import { Link } from 'react-router-dom'
-
 //SCSS Modules imports
 import style from '../scss/Navigation.module.scss'
+
+//Node_modules imports
+import { Link } from 'react-router-dom'
 
 //Interfaces imports
 import { FC } from 'react'

@@ -18,7 +18,3 @@ export interface IUserData {
 	isLoading: boolean
 	error: unknown
 }
-
-export interface IUserId {
-	id: string
-}
