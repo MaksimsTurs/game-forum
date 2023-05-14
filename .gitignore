@@ -1,5 +1,5 @@
 #NPM Packages
-package-lock.json
+pnpm-lock.yaml
 node_modules
 
 #Build
