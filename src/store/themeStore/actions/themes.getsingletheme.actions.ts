@@ -10,7 +10,7 @@ const getSingleTheme = createAsyncThunk<IThemeData[], string>(
 	async (id, thunkApi) => {
 		try {
 			const { data } = await axios.get<IThemeData[]>(
-				`http://localhost:4500/theme/${id}`
+				`https://game-forum-two.vercel.app/theme/${id}`
 			)
 			return data
 		} catch (error) {

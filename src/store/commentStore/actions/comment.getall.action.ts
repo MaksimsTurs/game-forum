@@ -9,7 +9,7 @@ const getAllComments = createAsyncThunk<IComment[], string>(
   'fetch/comments',
   async (id, thunkApi) => {
     try {
-      const { data } = await axios.get<IComment[]>(`http://localhost:4500/comment/${id}`)
+      const { data } = await axios.get<IComment[]>(`https://game-forum-two.vercel.app/comment/${id}`)
 
       return data
     } catch(error) {
