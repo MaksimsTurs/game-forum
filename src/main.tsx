@@ -15,7 +15,6 @@ const CategoryThemes = lazy(() => import('@/pages/CategoryThemes'))
 const SingleTheme = lazy(() => import('@/pages/SingleTheme'))
 const Registration = lazy(() => import('@/pages/Regestration'))
 const UserDetail = lazy(() => import('@/pages/UserDetail'))
-
 import Loader from '@/pages/ui/Loader/Loader'
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(

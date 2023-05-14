@@ -1,11 +1,6 @@
 #NPM Packages
-pnpm-lock.yaml
 node_modules
+package-lock.json
 
 #Build
-build
-
-#Vite Typescript plugin
-vite.config.d.ts
-vite.config.js
-tsconfig.node.tsbuildinfo
+./build

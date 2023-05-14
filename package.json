@@ -3,7 +3,8 @@
   "version": "1.0.5",
   "type": "module",
   "engines": {
-    "node": ">=18"
+    "node": ">=18",
+    "npm": ""
   },
   "scripts": {
     "dev": "vite",
