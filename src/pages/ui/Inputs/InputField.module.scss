@@ -1,0 +1,38 @@
+@import '@/styles/variabels.scss';
+
+.reg_form_input_container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  &:last-child {
+    margin: 0;
+  }
+
+  .reg_form_label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: $def-font-color;
+    width: 9rem;
+
+    span {
+      color: rgb(85, 0, 0);
+      font-weight: bolder;
+      margin-left: 0.5rem;
+    }
+  }
+
+  .reg_form_input {
+    margin-left: 1rem;
+    border: $def-container-border;
+    border-radius: $def-container-border-radius;
+    padding: 0.5rem 0.25rem;
+    width: 20rem;
+  }
+
+  .reg_form_error_message {
+    margin-left: 0.5rem;
+    font-size: 0.75rem;
+    color: rgb(85, 0, 0);
+  }
+}

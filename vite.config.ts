@@ -16,14 +16,12 @@ import viteWebFont from 'vite-plugin-webfont-dl'
 //@ts-ignore
 import { optimizeCssModules as viteOptimizeCSSModule } from 'vite-plugin-optimize-css-modules'
 
-import viteTypesChecker from 'vite-plugin-checker'
-
 //Native Node.js modules
-import path from 'path'
+import path from 'node:path'
 
 export default viteConfig({
 	appType: 'spa',
-	root: path.resolve(__dirname, "src"),
+	root: path.resolve(__dirname, 'src'),
 	server: {
 		host: true,
 	},
@@ -33,6 +31,7 @@ export default viteConfig({
 		},
 	},
 	build: {
+		emptyOutDir: true,
 		sourcemap: true,
 		minify: 'terser',
 		terserOptions: {
@@ -50,9 +49,13 @@ export default viteConfig({
 		rollupOptions: {
 			input: path.resolve(__dirname, 'src/index.html'),
 			output: {
+				manualChunks: {
+					'react-vendor': ['react', 'react-dom/client', 'react-router-dom'],
+					'redux-vendor': ['@reduxjs/toolkit', 'react-redux', 'redux']
+				},
 				assetFileNames: (assetInfo: { name: any }) => {
 					let extType = assetInfo.name!.split('.').at(1)
-					if (/png|jpe?g|webp/i.test(extType)) {
+					if (/webp/i.test(extType)) {
 						extType = 'img'
 					}
 					return `assets/${extType}/[name]-[hash][extname]`
@@ -69,14 +72,6 @@ export default viteConfig({
 		},
 	},
 	plugins: [
-		viteTypesChecker({
-			enableBuild: true,
-			terminal: true,
-			typescript: {
-				buildMode: true,
-				tsconfigPath: path.resolve(__dirname, 'tsconfig.json'),
-			}
-		}),
 		viteWebFont(),
 		viteHTMLPlugins({ minify: true }),
 		viteOptimizeCSSModule(),

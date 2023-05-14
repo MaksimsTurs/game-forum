@@ -1,8 +1,8 @@
-export interface IUserRegistration {
+export interface IUserState {
 	role: string
 	token: string
 	isLoading: boolean
-	error: unknown
+	error: string
 }
 
 export interface IUserLogin {
@@ -12,9 +12,9 @@ export interface IUserLogin {
 	}
 }
 
-export interface IUserData {
+export interface IUserDataState {
 	role: string
 	name: string
 	isLoading: boolean
-	error: unknown
+	error: string
 }

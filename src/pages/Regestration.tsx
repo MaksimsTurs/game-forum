@@ -1,9 +1,9 @@
 //Components imports
 import { Fragment } from 'react'
-import Header from './components/Header/Header'
-import HistoryBoard from './components/HistoryBoard/HistoryBoard'
-import RegistrationContainer from './components/Registration/RegistrationContainer'
-import Footer from './components/Footer/Footer'
+import Header from '@/pages/ui/Header/Header'
+import HistoryBoard from '@/pages/ui/HistoryBoard/HistoryBoard'
+import RegistrationContainer from '@/pages/fragments/Registration/RegistrationContainer'
+import Footer from '@/pages/ui/Footer/Footer'
 
 //React imports
 import { FC } from 'react'

@@ -2,24 +2,24 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 //Interfaces imports
-import { IUserRegistration } from '../interfaces/user.interfaces'
+import { IUserState } from '../interfaces/user.interfaces'
 import { IUserLogin } from '../interfaces/user.interfaces'
 import axios, { AxiosError } from 'axios'
 
 //Login into account action
-const userLogin = createAsyncThunk<IUserRegistration, IUserLogin>(
+const userLogin = createAsyncThunk<IUserState, IUserLogin>(
 	'auth/login',
-	async ({ userData }) => {
+	async ({ userData }, thunkApi) => {
 		try {
-			const { data } = await axios.post(`https://game-forum-server.vercel.app/login`, {
+			const { data } = await axios.post(`http://localhost:4500/login`, {
 				userData,
 			})
 
 			return data
 		} catch (error) {
 			if ((error as AxiosError).response?.status === 401) {
-				//@ts-ignore
-				return error.response.data
+				const errorMessage = 'Cann not find this name!'
+				return thunkApi.rejectWithValue(errorMessage)
 			}
 		}
 	}

@@ -2,12 +2,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 //Actions imports
-import userCheck from './actions/user.check'
+import userCheck from './actions/user.check.action'
 
 //Interfaces imports
-import { IUserData } from './interfaces/user.interfaces'
+import { IUserDataState } from './interfaces/user.interfaces'
 
-const initialState: IUserData = {
+const initialState: IUserDataState = {
 	role: 'guest',
 	name: '',
 	isLoading: false,

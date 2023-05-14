@@ -1,0 +1,58 @@
+@import '@/styles/variabels.scss';
+
+.themes_container {
+  border: $def-container-border;
+  box-shadow: $def-container-shadow;
+  border-radius: $def-container-border-radius;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+
+  .themes_theme_container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    position: relative;
+    border-bottom: $def-container-border;
+
+    &:last-child {
+      border: none;
+    }
+
+    .themes_popularity_container {
+      text-align: right;
+    }
+
+    .themes_info_undertitle {
+      margin-top: 0.2rem;
+      color: grey;
+      font-size: 0.75rem;
+    }
+
+    .themes_main_info {
+      flex-grow: 1;
+    }
+
+    .themes_info_title {
+      font-size: 0.8rem;
+    }
+
+    .themes_last_comment {
+      display: flex;
+      align-items: center;
+      width: 8rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .themes_user_icon {
+      width: $small-user-icon;
+      height: $small-user-icon;
+      border-radius: $smal-user-icon-border;
+      margin: 0rem 0.5rem;
+    }
+  }
+}

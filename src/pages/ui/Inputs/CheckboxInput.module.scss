@@ -1,0 +1,28 @@
+@import '@/styles/variabels.scss';
+
+.reg_form_input_container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  &:last-child {
+    margin: 0;
+  }
+
+  .reg_checkbox_label {
+    margin-left: 1rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+
+    span {
+      margin-left: 0.5rem;
+      color: rgb(85, 0, 0);
+    }
+  }
+
+  .reg_form_error_message {
+    margin-left: 0.5rem;
+    font-size: 0.75rem;
+    color: rgb(85, 0, 0);
+  }
+}

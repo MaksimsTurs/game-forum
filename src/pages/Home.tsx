@@ -1,9 +1,9 @@
 //Components imports
 import { Fragment, FC  } from 'react'
-import Header from './components/Header/Header'
-import HistoryBoard from './components/HistoryBoard/HistoryBoard'
-import CategoryContainer from './components/TopicContainer/CategoryContainer'
-import Footer from './components/Footer/Footer'
+import Header from './ui/Header/Header'
+import HistoryBoard from './ui/HistoryBoard/HistoryBoard'
+import CategoryContainer from './fragments/CategoryContainer/CategoryContainer'
+import Footer from './ui/Footer/Footer'
 
 const Home: FC = () => {
 

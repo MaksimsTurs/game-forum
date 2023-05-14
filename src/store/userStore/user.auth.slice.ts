@@ -2,13 +2,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 //Interfaces imports
-import { IUserRegistration } from './interfaces/user.interfaces'
+import { IUserState } from './interfaces/user.interfaces'
 
 //Actions imports
-import userRegistration from './actions/user.registration'
+import userRegistration from './actions/user.registration.action'
 import userLogin from './actions/user.login.action'
 
-const initialState: IUserRegistration = {
+const initialState: IUserState = {
 	role: localStorage.getItem('role') || 'guest',
 	token: localStorage.getItem('token') || '',
 	isLoading: false,
@@ -34,12 +34,13 @@ const userAuthSlice = createSlice({
 			.addCase(userRegistration.pending, state => {
 				state.isLoading = true
 			})
-			.addCase(userRegistration.rejected, (state, action) => {
-				state.error = action.error
+			.addCase(userRegistration.rejected, (state, { payload }) => {
+				state.error = String(payload)
 			})
 			.addCase(userRegistration.fulfilled, (state, { payload }) => {
 				state.role = payload.role
 				state.token = payload.token
+				state.error = ''
 
 				localStorage.setItem('token', payload.token)
 				localStorage.setItem('role', payload.role)
@@ -50,12 +51,13 @@ const userAuthSlice = createSlice({
 			.addCase(userLogin.pending, state => {
 				state.isLoading = true
 			})
-			.addCase(userLogin.rejected, (state, action) => {
-				state.error = action.error
+			.addCase(userLogin.rejected, (state, { payload }) => {
+				state.error = String(payload)
 			})
 			.addCase(userLogin.fulfilled, (state, { payload }) => {
 				state.role = payload.role
 				state.token = payload.token
+				state.error = ''
 
 				localStorage.setItem('token', payload.token)
 				localStorage.setItem('role', payload.role)

@@ -1,0 +1,21 @@
+@import '@/styles/variabels.scss';
+
+.facebok_button_container {
+  border: $def-container-border;
+  border-radius: $def-container-border-radius;
+  box-shadow: $def-container-shadow;
+  height: fit-content;
+  padding: 1rem;
+
+  .facebook_button_header {
+    margin-bottom: 1.5rem;
+    h5 {
+      font-weight: bolder;
+      font-size: 1.1rem;
+    }
+    p {
+      color: grey;
+      font-size: 0.8rem;
+    }
+  }
+}

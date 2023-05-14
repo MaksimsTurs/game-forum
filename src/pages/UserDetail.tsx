@@ -1,15 +1,15 @@
 //Inrefaces imports
 import { FC, Fragment } from 'react'
 import { AppDispatch, RootState } from '@/store/store'
-import { IUserData } from '@/store/userStore/interfaces/user.interfaces'
+import { IUserDataState } from '@/store/userStore/interfaces/user.interfaces'
 
 //Components imports
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
-import HistoryBoard from './components/HistoryBoard/HistoryBoard'
-import UserDetailMain from './components/UserComponents/userDetailMain'
-import UserHeader from './components/UserComponents/components/userHeader'
-import Loader from './components/Loader/Loader'
+import Header from './ui/Header/Header'
+import Footer from './ui/Footer/Footer'
+import HistoryBoard from '@/pages/ui/HistoryBoard/HistoryBoard'
+import UserDetailMain from './fragments/UserDetailContainer/userDetailMain'
+import UserHeader from './fragments/UserDetailContainer/components/userHeader'
+import Loader from './ui/Loader/Loader'
 
 //Node_modules imports
 import { useEffect } from 'react'
@@ -17,7 +17,7 @@ import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 //Actions imports
-import userCheck from '@/store/userStore/actions/user.check'
+import userCheck from '@/store/userStore/actions/user.check.action'
 
 const UserDetail: FC = () => {
 	const { pathname } = useLocation()
@@ -25,11 +25,10 @@ const UserDetail: FC = () => {
 	const dispatch = useDispatch<AppDispatch>()
 
 	useEffect(() => {
-
 		dispatch(userCheck(id))
 	}, [])
 
-	const { name, role, isLoading } = useSelector<RootState, IUserData>(
+	const { name, role, isLoading } = useSelector<RootState, IUserDataState>(
 		state => state.userCheckSlice
 	)
 
@@ -42,7 +41,7 @@ const UserDetail: FC = () => {
 					<Header />
 					<main>
 						<HistoryBoard themetitle={name} />
-						<UserHeader userData={[name, role]} />
+						<UserHeader name={name} role={role}/>
 						<UserDetailMain />
 						<HistoryBoard themetitle={name} />
 					</main>

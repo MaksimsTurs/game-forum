@@ -1,45 +1,56 @@
 //Components imports
-import { Fragment, FC } from 'react'
-import HistoryBoard from './components/HistoryBoard/HistoryBoard'
-import Footer from './components/Footer/Footer'
-import Header from './components/Header/Header'
-import CategoryThemesHeader from './components/CategoryThemesHeader/CategoryThemesHeader'
-import CategoryThemesContent from './components/SingleCategoryThemes/CategoryThemesContent'
-import Loader from './components/Loader/Loader'
+import { Fragment, FC, useEffect } from 'react'
+import HistoryBoard from './ui/HistoryBoard/HistoryBoard'
+import Footer from './ui/Footer/Footer'
+import Header from './ui/Header/Header'
+import CategoryThemesHeader from './ui/CategoryThemesHeader/CategoryThemesHeader'
+import CategoryThemesContent from './fragments/SingleCategoryThemes/CategoryThemesContent'
+import Loader from './ui/Loader/Loader'
+
+//Interfaces imports
+import { RootState, AppDispatch } from '@/store/store'
+import { IThemesState } from '@/store/themeStore/interfaces/themes.interfaces'
 
 //Node_modules imports
 import { useLocation } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 
-//Services imports
-import Themes from '@/services/themes/themes.services'
+//Actions imports
+import getAllThemes from '@/store/themeStore/actions/themes.getall.action'
 
 const CategoryThemes: FC = () => {
 	const { pathname } = useLocation()
 	const id = pathname.replace('/category/', '').split('/')[0]
+	const dispatch = useDispatch<AppDispatch>()
 
-	const { categoryData, themeData, isLoading } = Themes.getAllThemes(id)
+	useEffect(() => {
+		dispatch(getAllThemes(id))
+	}, [])
 
-	
+	const { isLoading, categorydata, themedata } = useSelector<
+		RootState,
+		IThemesState
+	>(state => state.themesSlice)
 
 	return (
 		<Fragment>
-			<Header />
 			{isLoading ? (
 				<Loader />
 			) : (
 				<Fragment>
+					<Header />
 					<main>
 						<HistoryBoard />
 						<CategoryThemesHeader
-							title={categoryData?.title}
-							description={categoryData?.description}
+							title={categorydata?.title}
+							description={categorydata?.description}
 						/>
-						<CategoryThemesContent themes={themeData} />
-						<HistoryBoard themetitle={categoryData?.title} />
+						<CategoryThemesContent themes={themedata} />
+						<HistoryBoard themetitle={categorydata?.title} />
 					</main>
+					<Footer />
 				</Fragment>
 			)}
-			<Footer />
 		</Fragment>
 	)
 }

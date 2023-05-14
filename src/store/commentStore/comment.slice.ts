@@ -2,7 +2,7 @@
 import { ICommentState } from './interfaces/comment.interfaces'
 
 //Node_modules imports
-import { createSlice, current } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice, current } from '@reduxjs/toolkit'
 
 //Actions imports
 import getAllComments from './actions/comment.getall.action'
@@ -11,7 +11,7 @@ import deleteComment from './actions/comment.delete.action'
 
 const initialState: ICommentState = {
 	comments: [],
-	isLoading: false,
+	isLoading: true,
 	error: '',
 }
 
@@ -38,9 +38,7 @@ const commentSlice = createSlice({
 				state.isLoading = true
 			})
 			.addCase(createNewComment.rejected, (state, action) => {
-				//@ts-ignore
-				state.error = action.payload.message
-				console.log(state.error)
+				state.error = action.payload
 				state.isLoading = false
 			})
 			.addCase(createNewComment.fulfilled, (state, { payload }) => {

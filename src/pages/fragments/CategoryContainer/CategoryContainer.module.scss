@@ -1,0 +1,68 @@
+@import '@/styles/variabels.scss';
+
+.category_bordered {
+  border: $def-container-border;
+  border-radius: $def-container-border-radius;
+  box-shadow: $def-container-shadow;
+  overflow: hidden;
+}
+
+.category_container {
+  margin: $def-container-margin 0rem;
+  display: flex;
+  justify-content: space-between;
+
+  .category_categories_container {
+    flex-grow: 1;
+
+    .category_container_header {
+      margin-bottom: $def-container-margin;
+      padding: 1rem;
+      font-size: 1.5rem;
+      font-weight: bolder;
+    }
+
+    .category_body_content {
+      position: relative;
+      height: 18.5rem;
+      transition: height 0.35s ease-in-out;
+    }
+  }
+
+  .category_hidden {
+    height: 0;
+    transition: height 0.25s ease;
+    // overflow: hidden;
+  }
+
+  .category_title_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    background-color: $def-font-color;
+    padding: 0.8rem;
+    color: white;
+
+    span {
+      font-weight: bolder;
+    }
+
+    .category_change_button {
+      background: hsla(0, 0%, 100%, .1);
+      cursor: pointer;
+      height: 1.2rem;
+      width: 1.2rem;
+      overflow: visible;
+      transition: all .2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      &:hover {
+        transition: all 0.2s ease;
+        background: rgba(255, 255, 255, 0.5);
+      }
+    }
+  }
+}

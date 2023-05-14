@@ -1,0 +1,40 @@
+@import '@/styles/variabels.scss';
+
+.forum_statistic_container {
+  margin: 0.5rem 0rem;
+  background-color: white;
+  border-radius: $def-container-border-radius;
+  border: $def-container-border;
+  box-shadow: $def-container-shadow;
+
+  .forum_statistic_header {
+    padding: 0.9rem;
+    border-bottom: $def-container-border;
+
+    h2 {
+      font-weight: bold;
+    }
+  }
+
+  .forum_statistic_content {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+  }
+
+  .forum_stats_count {
+    text-align: center;
+  }
+
+  .forum_stats_count {
+    font-size: 1.3rem;
+    font-weight: bolder;
+    color: $def-font-color;
+  }
+
+  .forum_stats_title {
+    color: grey;
+    font-size: 0.75rem;
+    margin-top: 0.15rem;
+  }
+}

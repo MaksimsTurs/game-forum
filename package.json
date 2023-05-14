@@ -2,6 +2,10 @@
   "name": "game-forum",
   "version": "1.0.4",
   "type": "module",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -9,18 +13,16 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
-    "axios": "1.4.0",
+    "redux": "^4.2.1",
+    "react-redux": "^8.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.9",
-    "react-redux": "^8.0.5",
     "react-router-dom": "^6.11.1",
-    "redux": "^4.2.1",
-    "swr": "^2.1.5",
-    "vite-plugin-checker": "^0.6.0"
+    "axios": "1.4.0"
   },
   "devDependencies": {
-    "@types/node": "^20.1.1",
+    "@types/node": "^20.1.4",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
     "cssnano": "^6.0.1",
