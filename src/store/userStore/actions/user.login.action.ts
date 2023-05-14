@@ -11,7 +11,7 @@ const userLogin = createAsyncThunk<IUserState, IUserLogin>(
 	'auth/login',
 	async ({ userData }, thunkApi) => {
 		try {
-			const { data } = await axios.post(`https://game-forum-two.vercel.app/login`, {
+			const { data } = await axios.post(`https://game-forum-server.vercel.app/login`, {
 				userData,
 			})
 

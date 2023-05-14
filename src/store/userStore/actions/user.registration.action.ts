@@ -11,7 +11,7 @@ const userRegistration = createAsyncThunk<IUserRegistration, IRegistrationForm>(
 	'auth/registration',
 	async (userData, thunkApi) => {
 		try {
-			const { data } = await axios.post(`https://game-forum-two.vercel.app/registration`, {
+			const { data } = await axios.post(`https://game-forum-server.vercel.app/registration`, {
 				userData,
 			})
 			return data

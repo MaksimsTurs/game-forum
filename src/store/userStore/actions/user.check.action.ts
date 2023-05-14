@@ -10,7 +10,7 @@ const userCheck = createAsyncThunk<IUserData, string>(
 	'auth/check',
 	async (id, thunkApi) => {
 		try {
-			const { data } = await axios.post(`https://game-forum-two.vercel.app/user/${id}`)
+			const { data } = await axios.post(`https://game-forum-server.vercel.app/user/${id}`)
 			return data
 		} catch (error) {
 			return thunkApi.rejectWithValue(error)

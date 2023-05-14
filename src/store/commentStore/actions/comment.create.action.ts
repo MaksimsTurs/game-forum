@@ -9,7 +9,7 @@ const createNewComment = createAsyncThunk<IComment, ICreateComment>(
   'fetch/createcomment',
   async ({ token, commentdata }, thunkApi) => {
     try {
-      const { data } = await axios.post(`https://game-forum-two.vercel.app/comment/${token}`, { commentdata })
+      const { data } = await axios.post(`https://game-forum-server.vercel.app/comment/${token}`, { commentdata })
       return data
     } catch(error) {
       return thunkApi.rejectWithValue((error as AxiosError).response?.status)

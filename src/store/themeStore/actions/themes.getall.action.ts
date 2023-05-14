@@ -7,7 +7,7 @@ const getAllThemes = createAsyncThunk<unknown, string>(
   //@ts-ignore
 	async (id, thunkApi) => {
 		try {
-			const { data } = await axios.get(`https://game-forum-two.vercel.app/topic/${id}`)
+			const { data } = await axios.get(`https://game-forum-server.vercel.app/topic/${id}`)
 
 			return data
 		} catch (error) {

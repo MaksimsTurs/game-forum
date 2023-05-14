@@ -9,7 +9,7 @@ const getAllCategorie = createAsyncThunk<ICategory[]>(
 	'fetch/category',
 	async (_, thunkApi) => {
 		try {
-			const { data } = await axios.get<ICategory[]>(`https://game-forum-two.vercel.app/`)
+			const { data } = await axios.get<ICategory[]>(`https://game-forum-server.vercel.app/`)
 			return data
 		} catch (error) {
 			return thunkApi.rejectWithValue(error)
