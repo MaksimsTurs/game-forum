@@ -17,7 +17,7 @@ import { AppDispatch, RootState } from '@/store/store'
 
 //Actions imports
 import createNewComment from '@/store/commentStore/actions/comment.create.action'
-import { IUserRegistration } from '@/store/userStore/interfaces/user.interfaces'
+import { IUserState } from '@/store/userStore/interfaces/user.interfaces'
 
 const ThemeCommentForm: FC = () => {
 	const [isActive, setActiv] = useState<boolean>(false)
@@ -32,7 +32,7 @@ const ThemeCommentForm: FC = () => {
 
 	const { register, handleSubmit, reset } = useForm<IComment>()
 
-	const { role } = useSelector<RootState, IUserRegistration>(
+	const { role, token } = useSelector<RootState, IUserState>(
 		state => state.userAuthSlice
 	)
 	const { error } = useSelector<RootState, ICommentState>(
@@ -40,9 +40,8 @@ const ThemeCommentForm: FC = () => {
 	)
 
 	const createComment: SubmitHandler<IComment> = async ({ text }) => {
-		const token = localStorage.getItem('token') || 'undefined'
-
 		const commentdata = {
+			token,
 			text,
 			theme_id: pathname.replace('/theme/', ''),
 		}

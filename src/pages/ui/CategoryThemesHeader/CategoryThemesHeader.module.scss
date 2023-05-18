@@ -72,4 +72,18 @@
     font-size: 0.8rem;
     color: grey;
   }
+
+  .header_create_theme_button {
+    background-color: #4d596f;
+    border-radius: $def-container-border-radius;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    color: white;
+    font-weight: bolder;
+
+    &:hover {
+      transition: all 0.3s ease;
+      background-color: $def-font-hover-color;
+    }
+  }
 }

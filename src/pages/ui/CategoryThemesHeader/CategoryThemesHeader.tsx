@@ -9,15 +9,21 @@ import { FC } from 'react'
 import { IThemeData } from '@/store/themeStore/interfaces/themes.interfaces'
 
 //Image imports
-import usericon from './img/user_icon.png?format=webp&preset=thumbnail'
+import usericon from './img/user_icon.png?format=webp&prest=thumbnail'
 
 interface IComponentProps {
 	themedata?: IThemeData
 	title: string | undefined
+	id?: string
 	description?: string | undefined
 }
 
-const CategoryThemesHeader: FC<IComponentProps> = ({ title, themedata, description }: IComponentProps) => {
+const CategoryThemesHeader: FC<IComponentProps> = ({
+	title,
+	themedata,
+	description,
+	id,
+}: IComponentProps) => {
 	const { pathname } = useLocation()
 
 	return (
@@ -42,7 +48,14 @@ const CategoryThemesHeader: FC<IComponentProps> = ({ title, themedata, descripti
 							<p className={style.header_date}>April 6, 2022 in News</p>
 						</div>
 					</div>
-				) : null}
+				) : (
+					<Link
+						to={`/${id}/create-theme`}
+						className={style.header_create_theme_button}
+					>
+						Create new theme
+					</Link>
+				)}
 				<div className={style.header_follow_content}>
 					<p className={style.header_follow}>Followers</p>
 					<p className={style.header_follow_count}>17</p>

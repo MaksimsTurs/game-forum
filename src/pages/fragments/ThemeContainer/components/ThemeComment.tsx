@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 //Image imports
-import usericon from '../img/user_icon.png?format=webp&preset=thumbnail'
+import usericon from '../img/user_icon.png?format=webp&prest=thumbnail'
 
 //Actions imports
 import deleteComment from '@/store/commentStore/actions/comment.delete.action'

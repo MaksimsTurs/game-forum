@@ -30,6 +30,7 @@ const SingleTheme: FC = () => {
 	const { isLoading, themedata } = useSelector<RootState, IThemesState>(
 		state => state.themesSlice
 	)
+
 	return (
 		<Fragment>
 			{isLoading ? (

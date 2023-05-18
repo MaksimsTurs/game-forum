@@ -5,13 +5,14 @@ export interface ICategoryData {
 }
 
 export interface IThemeData {
-	_id: string
-	topics_id: string
-	title: string
-	author: string
-	text: string
-	views: number
-	reply: number
+	_id?: string | undefined
+	topics_id?: string | undefined
+	title?: string | undefined
+	author?: string | undefined
+	text?: string | undefined
+	views?: number | undefined
+	reply?: number | undefined
+	locked?: boolean | undefined
 }
 
 export interface IThemesState {
@@ -19,4 +20,9 @@ export interface IThemesState {
   categorydata: ICategoryData | undefined
   isLoading: boolean
   error: unknown
+}
+
+export interface ICloseThemeAction {
+	token: string
+	theme_id: string | undefined
 }

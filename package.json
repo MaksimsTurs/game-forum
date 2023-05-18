@@ -1,10 +1,10 @@
 {
   "name": "game-forum",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "type": "module",
   "engines": {
     "node": ">=18",
-    "npm": ""
+    "npm": ">= 9"
   },
   "scripts": {
     "dev": "vite",
@@ -13,16 +13,16 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
-    "redux": "^4.2.1",
-    "react-redux": "^8.0.5",
+    "axios": "1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.9",
-    "react-router-dom": "^6.11.1",
-    "axios": "1.4.0"
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.11.2",
+    "redux": "^4.2.1"
   },
   "devDependencies": {
-    "@types/node": "^20.1.4",
+    "@types/node": "^20.2.1",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
     "cssnano": "^6.0.1",
@@ -30,10 +30,10 @@
     "postcss-combine-duplicated-selectors": "^10.0.3",
     "postcss-preset-env": "^8.3.2",
     "sass": "^1.62.1",
-    "terser": "^5.17.3",
+    "terser": "^5.17.4",
     "typescript": "5.0.4",
-    "vite": "^4.3.5",
-    "vite-imagetools": "^5.0.3",
+    "vite": "^4.3.7",
+    "vite-imagetools": "^5.0.4",
     "vite-plugin-html": "^3.2.0",
     "vite-plugin-image-optimizer": "^1.1.4",
     "vite-plugin-image-presets": "^0.3.4",

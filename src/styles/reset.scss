@@ -59,17 +59,24 @@ footer {
   }
 }
 
-button {
-  background-color: white;
-  cursor: pointer;
-}
-
-
 input,
 button,
 textarea {
   font-family: inherit;
   background-color: transparent;
+}
+
+button:disabled {
+  color: white;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
 }
 
 input::-ms-clear {
@@ -89,15 +96,6 @@ textarea {
 input[type=file],
 input[type=radio] {
   display: none;
-}
-
-button {
-  cursor: pointer;
-}
-
-button::-moz-focus-inner {
-  padding: 0;
-  border: 0;
 }
 
 a,

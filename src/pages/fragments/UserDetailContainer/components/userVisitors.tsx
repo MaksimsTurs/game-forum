@@ -13,7 +13,7 @@ import style from '../scss/userVisitors.module.scss'
 import UserVisitorsHoc from './userVisitors.hoc'
 
 //Image imports
-import usericon from '../img/user_icon.png?format=webp&preset=thumbnail'
+import usericon from '../img/user_icon.png?format=webp&prest=thumbnail'
 
 const UserVisitors: FC = () => {
 	const { name } = useSelector<RootState, IUserDataState>(

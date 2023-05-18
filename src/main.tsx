@@ -15,6 +15,7 @@ const CategoryThemes = lazy(() => import('@/pages/CategoryThemes'))
 const SingleTheme = lazy(() => import('@/pages/SingleTheme'))
 const Registration = lazy(() => import('@/pages/Regestration'))
 const UserDetail = lazy(() => import('@/pages/UserDetail'))
+const CreateTheme = lazy(() => import('@/pages/CreateTheme'))
 import Loader from '@/pages/ui/Loader/Loader'
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
@@ -24,7 +25,7 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
 				<Routes>
 					<Route
 						path='/'
-						element={ 
+						element={
 							<Suspense>
 								<Home />
 							</Suspense>
@@ -49,7 +50,7 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
 					<Route
 						path='/registration'
 						element={
-							<Suspense fallback={<Loader/>}>
+							<Suspense fallback={<Loader />}>
 								<Registration />
 							</Suspense>
 						}
@@ -62,6 +63,14 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
 							</Suspense>
 						}
 					/>
+					<Route
+						path='/:id/create-theme'
+						element={
+							<Suspense fallback={<Loader />}>
+								<CreateTheme />
+							</Suspense>
+						}
+					></Route>
 				</Routes>
 			</Provider>
 		</BrowserRouter>

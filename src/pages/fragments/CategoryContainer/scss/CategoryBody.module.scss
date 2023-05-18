@@ -1,4 +1,4 @@
-@import '../../../../styles/variabels.scss';
+@import '@/styles/variabels.scss';
 
 .category_content_container {
   border-bottom: $def-container-border;
@@ -46,6 +46,10 @@
     margin-top: 0.2rem;
     color: grey;
     font-size: 0.75rem;
+
+    a {
+    color: grey;
+    }
   }
 
   .category_last_comment {

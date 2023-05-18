@@ -1,0 +1,61 @@
+@import '@/styles/variabels.scss';
+
+.create_form_container {
+  padding: 1rem 0rem;
+
+  .create_border {
+    border-radius: $def-container-border-radius;
+    border: $def-container-border;
+    box-shadow: $def-container-shadow;
+  }
+
+  .create_theme_name {
+    color: $def-font-color;
+    font-weight: bolder;
+    margin-bottom: 0.25rem;
+  }
+
+  .create_theme_textarea {
+    height: 15rem;
+  }
+
+  .create_button_submit {
+    background-color: $def-font-color;
+    color: white;
+    border-radius: $def-container-border-radius;
+    padding: 0.5rem 1.25rem;
+    margin-top: 0.5rem;
+    transition: 0.3s ease;
+    font-weight: bolder;
+
+    &:hover {
+      background-color: $def-font-hover-color;
+      transition: 0.3s ease;
+    }
+  }
+
+  .create_theme_input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .create_editor_container {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .create_editor_button {
+    padding: 0.4rem 0.5rem;
+    border-radius: $def-container-border-radius;
+    margin-right: 0.7rem;
+    transition: 0.2s ease;
+
+    &:hover {
+      background-color: rgba(192, 192, 192, 0.5);
+      transition: all 0.2s ease;
+    }
+  }
+}

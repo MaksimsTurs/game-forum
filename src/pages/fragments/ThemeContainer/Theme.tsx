@@ -2,7 +2,7 @@
 import style from './Theme.module.scss'
 
 //Image imports
-import usericon from './img/user_icon.png?format=webp&preset=thumbnail'
+import usericon from './img/user_icon.png?format=webp&prest=thumbnail'
 
 //Node_modules imports
 import { Link, useLocation } from 'react-router-dom'
@@ -90,7 +90,11 @@ const Theme: FC<IComponentProps> = ({ themedata }: IComponentProps) => {
 					))}
 				</div>
 			}
-			<ThemeCommentForm />
+			{themedata?.locked ? (
+				<div className={style.theme_locked_message}>This Theme is Locked for new Comments!</div>
+			) : (
+				<ThemeCommentForm />
+			)}
 		</Fragment>
 	)
 }

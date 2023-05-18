@@ -2,7 +2,7 @@
 import { ICommentState } from './interfaces/comment.interfaces'
 
 //Node_modules imports
-import { PayloadAction, createSlice, current } from '@reduxjs/toolkit'
+import { createSlice, current } from '@reduxjs/toolkit'
 
 //Actions imports
 import getAllComments from './actions/comment.getall.action'
@@ -55,9 +55,9 @@ const commentSlice = createSlice({
 			})
 			.addCase(deleteComment.fulfilled, (state, { payload }) => {
 				state.isLoading = false
+				
 				if (payload.deleted) {
-					const existsComments = current(state.comments)
-					const newArrayOfComments = existsComments.filter(
+					const newArrayOfComments = current(state.comments).filter(
 						el => el._id !== payload._id
 					)
 					state.comments = newArrayOfComments

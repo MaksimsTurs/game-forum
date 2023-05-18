@@ -11,11 +11,6 @@ export interface ICommentState {
   error: unknown
 }
 
-export interface ICreateComment {
-  commentdata: any,
-  token: string
-}
-
 export interface IDeleComment {
   _id: string
   role: string,

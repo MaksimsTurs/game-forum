@@ -5,7 +5,7 @@ import style from '../scss/userHeader.module.scss'
 import { FC } from 'react'
 
 //Image imports
-import usericon from '../img/user_icon.png?format=webp&preset=thumbnail'
+import usericon from '../img/user_icon.png?format=webp&prest=thumbnail'
 
 interface IComponentProps {
 	name: string

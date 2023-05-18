@@ -1,3 +1,6 @@
+//SCSS Module imports
+import style from './fragments/SingleCategoryThemes/CategoryThemes.module.scss'
+
 //Components imports
 import { Fragment, FC, useEffect } from 'react'
 import HistoryBoard from './ui/HistoryBoard/HistoryBoard'
@@ -6,6 +9,7 @@ import Header from './ui/Header/Header'
 import CategoryThemesHeader from './ui/CategoryThemesHeader/CategoryThemesHeader'
 import CategoryThemesContent from './fragments/SingleCategoryThemes/CategoryThemesContent'
 import Loader from './ui/Loader/Loader'
+import ThemesNavigation from './fragments/SingleCategoryThemes/components/ThemesNavigation'
 
 //Interfaces imports
 import { RootState, AppDispatch } from '@/store/store'
@@ -42,10 +46,16 @@ const CategoryThemes: FC = () => {
 					<main>
 						<HistoryBoard />
 						<CategoryThemesHeader
+							id={id}
 							title={categorydata?.title}
 							description={categorydata?.description}
 						/>
-						<CategoryThemesContent themes={themedata} />
+						<div className={style.themes_container}>
+							<ThemesNavigation />
+							{
+								themedata.map(data => <CategoryThemesContent key={data._id} theme={data} />)
+							}						
+						</div>
 						<HistoryBoard themetitle={categorydata?.title} />
 					</main>
 					<Footer />

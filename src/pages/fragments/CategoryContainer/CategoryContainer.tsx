@@ -23,10 +23,10 @@ import {
 import getAllCategorie from '@/store/categoryStore/actions/category.getall.action'
 
 //Image imports
-import bugicon from './img/bug_icon.png?format=webp&preset=thumbnail'
-import newsicon from './img/news_icon.png?format=webp&preset=thumbnail'
-import guidicon from './img/guide_icon.png?format=webp&preset=thumbnail'
-import tavervnicon from './img/discussion_icon.png?format=webp&preset=thumbnail'
+import bugicon from './img/bug_icon.png?format=webp&prest=thumbnail'
+import newsicon from './img/news_icon.png?format=webp&prest=thumbnail'
+import guidicon from './img/guide_icon.png?format=webp&prest=thumbnail'
+import tavervnicon from './img/discussion_icon.png?format=webp&prest=thumbnail'
 
 const CategoryContainer: FC = () => {
 	const pngicon: string[] = [bugicon, newsicon, tavervnicon, guidicon]

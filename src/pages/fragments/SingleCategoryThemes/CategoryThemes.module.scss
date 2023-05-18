@@ -55,4 +55,19 @@
       margin: 0rem 0.5rem;
     }
   }
+
+  .themes_lock_button_disable {
+    opacity: 1;
+    transition: 0.5s ease;
+  }
+
+  .themes_lock_button_enable {
+    opacity: 0.4;
+    transition: 0.5s ease;
+  
+    &:hover {
+      opacity: 1;
+      transition: 0.5s ease;
+    }
+  }
 }

@@ -9,7 +9,7 @@ import { FC } from 'react'
 
 //Image imports
 //@ts-ignore
-import facebookicon from '../img/facebook-app-symbol.png?format=webp&preset=thumbnail'
+import facebookicon from '../img/facebook-app-symbol.png?format=webp&prest=thumbnail'
 
 const Button: FC = () => {
   return(

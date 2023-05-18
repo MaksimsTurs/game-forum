@@ -1,18 +1,18 @@
 //Node_modules imports
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios, { AxiosError } from 'axios'
+import axios from 'axios'
 
 //Interfaces imports
-import { IComment, ICreateComment } from '../interfaces/comment.interfaces'
+import { IComment } from '../interfaces/comment.interfaces'
 
-const createNewComment = createAsyncThunk<IComment, ICreateComment>(
+const createNewComment = createAsyncThunk<IComment, any>(
   'fetch/createcomment',
-  async ({ token, commentdata }, thunkApi) => {
+  async ({ commentdata }, thunkApi) => {
     try {
-      const { data } = await axios.post(`https://game-forum-server.vercel.app/comment/${token}`, { commentdata })
+      const { data } = await axios.post(`https://game-forum-server.vercel.app/comment/add`, { commentdata })
       return data
     } catch(error) {
-      return thunkApi.rejectWithValue((error as AxiosError).response?.status)
+      return thunkApi.rejectWithValue(error)
     }
   }
 )

@@ -147,6 +147,18 @@
   }
 }
 
+  .theme_locked_message {
+    margin: 0.5rem 0rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-weight: bolder;
+    color: $def-error-color;
+    border: $def-container-border;
+    border-radius: $def-container-border-radius;
+    box-shadow: $def-container-shadow;
+
+  }
+
 @keyframes createAnimation {
   0% {
     scale: 0;

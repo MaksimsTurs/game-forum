@@ -5,8 +5,7 @@ import style from '../scss/CategoryBody.module.scss'
 import { Link } from 'react-router-dom'
 
 //Image imports
-//@ts-ignore
-import usericon from './../img/user_icon.png?format=webp&preset=thumbnail '
+import usericon from './../img/user_icon.png?format=webp&prest=thumbnail'
 
 //Interfaces imports
 import { FC } from 'react'
@@ -17,7 +16,8 @@ interface IComponentProps {
 	src: string
 }
 
-const CategoryBody: FC<IComponentProps> = ({ data, src }: IComponentProps) => {
+const CategoryBody: FC<IComponentProps> = ({ data, src }: IComponentProps) => {	
+
 	return (
 		<section className={style.category_content_container}>
 			<div className={style.category_info_container}>
@@ -61,7 +61,7 @@ const CategoryBody: FC<IComponentProps> = ({ data, src }: IComponentProps) => {
 						{data.last_comment.title}
 					</Link>
 					<p className={style.category_category_description}>
-						By {data.last_comment.author}, Wednesday at 02:20 PM
+						By <Link to={`/user/${data.last_comment.author_id}`}>{data.last_comment.author}</Link>, Wednesday at 02:20 PM
 					</p>
 				</div>
 			</div>
