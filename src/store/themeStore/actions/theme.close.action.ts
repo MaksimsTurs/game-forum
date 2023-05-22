@@ -6,10 +6,10 @@ import axios from 'axios';
 import { ICloseThemeAction } from '../interfaces/themes.interfaces'
 
 const closeTheme = createAsyncThunk<string, ICloseThemeAction>(
-  'close/theme',
+  'theme/close',
   async (closeData, thunkApi) => {
     try {
-        const { data } = await axios.post("https://game-forum-server.vercel.app/close/theme", { closeData })
+        const { data } = await axios.post("https://game-forum-server.vercel.app/theme/close", { closeData })
         return data
     } catch(error) {
       return thunkApi.rejectWithValue(error)

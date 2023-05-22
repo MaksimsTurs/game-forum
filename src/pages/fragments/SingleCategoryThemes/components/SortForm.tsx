@@ -11,13 +11,13 @@ import { FC } from 'react'
 import useModal from '@/customHooks/useModal.hook'
 
 const SortForm: FC = () => {
-	const [isVisibleSort, setVisibleSort] = useState<boolean>(false)
+	const [isVisible, setVisible] = useState<boolean>(false)
 	const sortRef = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
-		const clickHandler = (event: any) => {
-			const newState = useModal(sortRef, event, isVisibleSort)
-			setVisibleSort(newState)
+		const clickHandler = (event: MouseEvent) => {
+			const newState = useModal(sortRef, event, isVisible)
+			setVisible(newState)
 		}
 
 		document.addEventListener('click', clickHandler)
@@ -39,7 +39,7 @@ const SortForm: FC = () => {
 			<p>Sorted by &#9662;</p>
 			<form
 				className={
-					isVisibleSort
+					isVisible
 						? `${style.themes_sort_form} ${style.visible}`
 						: `${style.themes_sort_form } ${style.hidden}`
 				}

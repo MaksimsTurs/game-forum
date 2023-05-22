@@ -1,7 +1,7 @@
 //Interfaces imports
-import { FC } from 'react'
+import { FC, Fragment } from 'react'
 import { RootState } from '@/store/store'
-import { IUserDataState } from '@/store/userStore/interfaces/user.interfaces'
+import { IUserState } from '@/store/userStore/interfaces/user.interfaces'
 
 //Node_modules imports
 import { useSelector } from 'react-redux'
@@ -12,13 +12,10 @@ import style from '../scss/userVisitors.module.scss'
 //Components imports
 import UserVisitorsHoc from './userVisitors.hoc'
 
-//Image imports
-import usericon from '../img/user_icon.png?format=webp&prest=thumbnail'
-
 const UserVisitors: FC = () => {
-	const { name } = useSelector<RootState, IUserDataState>(
-		state => state.userCheckSlice
-	)
+	const {
+		user: { name, lastViewers, followers },
+	} = useSelector<RootState, IUserState>(state => state.userSlice)
 
 	return (
 		<section className={style.visitors_container}>
@@ -26,40 +23,23 @@ const UserVisitors: FC = () => {
 				<h5>{name} last won the day on April 23</h5>
 				<h6>{name} had the most liked content!</h6>
 			</div>
-			<UserVisitorsHoc title='19 Followers'>
-				<div className={style.visitors_followers_container}>
-					<img
-						className={style.visitors_followers_icon}
-						src={usericon}
-						alt='User icon'
-						loading='lazy'
-					/>
-					<img
-						className={style.visitors_followers_icon}
-						src={usericon}
-						alt='User icon'
-					/>
-					<img
-						className={style.visitors_followers_icon}
-						src={usericon}
-						alt='User icon'
-					/>
-					<img
-						className={style.visitors_followers_icon}
-						src={usericon}
-						alt='User icon'
-					/>
-					<img
-						className={style.visitors_followers_icon}
-						src={usericon}
-						alt='User icon'
-					/>
-					<img
-						className={style.visitors_followers_icon}
-						src={usericon}
-						alt='User icon'
-					/>
-				</div>
+			<UserVisitorsHoc title={`${followers.length} Followers`}>
+				{followers.length <= 0 ? (
+					<div className={style.visitors_follower_warn}>{name} have no Followers</div>
+				) : (
+					<div className={style.visitors_followers_container}>
+						{followers.map(data => {
+							return (
+								<img
+									className={style.visitors_followers_icon}
+									src={data.avatar}
+									alt={data.avatar}
+									loading='lazy'
+								/>
+							)
+						})}
+					</div>
+				)}
 			</UserVisitorsHoc>
 			<UserVisitorsHoc title='Profile Information'>
 				<div className={style.visitors_information}>
@@ -68,14 +48,26 @@ const UserVisitors: FC = () => {
 				</div>
 			</UserVisitorsHoc>
 			<UserVisitorsHoc title='Recent Profile Visitors'>
-				<p className={style.visitors_visitor_count}>358,953 profile views</p>
-				<div className={style.visitors_visitor_info_container}>
-					<img src={usericon} alt='User icon' />
-					<div>
-						<p>Seuong_csbd</p>
-						<p className={style.visitors_visit_date}>Sunday at 09:41 PM</p>
+				<p className={style.visitors_visitor_count}>
+					{lastViewers.length} profile views
+				</p>
+				{lastViewers.length <= 0 ? null : (
+					<div className={style.visitors_visitor_info_container}>
+						{lastViewers.map(data => {
+							return (
+								<Fragment>
+									<img src={data.avatar} alt='User icon' />
+									<div>
+										<p>{data.name}</p>
+										<p className={style.visitors_visit_date}>
+											Sunday at 09:41 PM
+										</p>
+									</div>
+								</Fragment>
+							)
+						})}
 					</div>
-				</div>
+				)}
 			</UserVisitorsHoc>
 		</section>
 	)

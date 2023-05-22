@@ -27,9 +27,10 @@ const SingleTheme: FC = () => {
 		dispatch(getSingleTheme(id))
 	}, [])
 
-	const { isLoading, themedata } = useSelector<RootState, IThemesState>(
-		state => state.themesSlice
-	)
+	const { error, isLoading, themeSingle } = useSelector<
+		RootState,
+		IThemesState
+	>(state => state.themesSlice)
 
 	return (
 		<Fragment>
@@ -39,13 +40,29 @@ const SingleTheme: FC = () => {
 				<Fragment>
 					<Header />
 					<main>
-						<HistoryBoard themetitle={themedata[0]?.title} />
-						<CategoryThemesHeader
-							title={themedata[0]?.title}
-							themedata={themedata[0]}
-						/>
-						<Theme themedata={themedata[0]} />
-						<HistoryBoard themetitle={themedata[0]?.title} />
+						<HistoryBoard themetitle={themeSingle?.title} />
+						{error ? (
+							<div
+								style={{
+									margin: '1rem 0rem',
+									fontWeight: 'bolder',
+									fontSize: '2rem',
+									color: '#500',
+								}}
+							>
+								{error}
+							</div>
+						) : (
+							<Fragment>
+								<CategoryThemesHeader
+									title={themeSingle?.title}
+									themeData={themeSingle}
+								/>
+								<Theme themedata={themeSingle} />
+							</Fragment>
+						)}
+
+						<HistoryBoard themetitle={themeSingle?.title} />
 					</main>
 					<Footer />
 				</Fragment>

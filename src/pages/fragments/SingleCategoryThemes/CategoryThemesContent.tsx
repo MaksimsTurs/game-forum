@@ -18,18 +18,16 @@ import { IUserState } from '@/store/userStore/interfaces/user.interfaces'
 import { RootState, AppDispatch } from '@/store/store'
 
 //Actions imports
-import closeTheme from '@/store/themeStore/actions/close.theme.action'
+import closeTheme from '@/store/themeStore/actions/theme.close.action'
 
 interface IComponentProps {
 	theme: IThemeData | undefined
 }
 
-const CategoryThemesContent: FC<IComponentProps> = ({
-	theme,
-}: IComponentProps) => {
+const CategoryThemesContent: FC<IComponentProps> = ({ theme }) => {
 	const dispatch = useDispatch<AppDispatch>()
 	const { role, token } = useSelector<RootState, IUserState>(
-		state => state.userAuthSlice
+		state => state.userSlice
 	)
 
 	const closeCurrentTheme = () => {
@@ -46,7 +44,7 @@ const CategoryThemesContent: FC<IComponentProps> = ({
 				{true && (
 					<button
 						onClick={closeCurrentTheme}
-						hidden={(!theme?.locked) && (role !== 'admin')}
+						hidden={!theme?.locked && role !== 'admin'}
 						disabled={theme?.locked}
 						className={
 							theme?.locked

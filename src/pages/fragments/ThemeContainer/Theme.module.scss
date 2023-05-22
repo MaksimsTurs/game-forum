@@ -13,6 +13,29 @@
     animation: deleteAnimation 0.25s forwards;
   }
 
+  .theme_edit_button {
+    padding: 0.3rem 0.9rem;
+    background-color: $def-font-color;
+    border-radius: $def-container-border-radius;
+    color: white;
+    font-weight: bold;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: $def-font-hover-color;
+      transition: all 0.2s ease;
+    }
+  }
+
+  .theme_edit_close {
+    background-color: rgb(153, 0, 0);
+    margin-right: 0.5rem;
+
+    &:hover {
+      background-color: $def-error-color;
+    }
+  }
+
   .theme_content {
     position: relative;
     padding: 1rem 1rem 0rem 1rem;
@@ -142,8 +165,8 @@
   }
 
   .theme_theme_text {
-    font-size: 0.8rem;
-    color: rgba(0, 0, 0, 0.7);
+    font-size: 0.85rem;
+    color: rgba(0, 0, 0, 0.85);
   }
 }
 

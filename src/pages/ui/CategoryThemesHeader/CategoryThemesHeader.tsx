@@ -3,16 +3,20 @@ import style from './CategoryThemesHeader.module.scss'
 
 //Node_modules imports
 import { useLocation, Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 //Interfaces imports
 import { FC } from 'react'
 import { IThemeData } from '@/store/themeStore/interfaces/themes.interfaces'
+import { RootState } from '@/store/store'
+import { IUserState } from '@/store/userStore/interfaces/user.interfaces'
 
 //Image imports
 import usericon from './img/user_icon.png?format=webp&prest=thumbnail'
+import CreateNewThemeButton from '../CreateNewThemeButton/CreateNewThemeButton'
 
 interface IComponentProps {
-	themedata?: IThemeData
+	themeData?: IThemeData
 	title: string | undefined
 	id?: string
 	description?: string | undefined
@@ -20,11 +24,15 @@ interface IComponentProps {
 
 const CategoryThemesHeader: FC<IComponentProps> = ({
 	title,
-	themedata,
+	themeData,
 	description,
 	id,
 }: IComponentProps) => {
 	const { pathname } = useLocation()
+
+	const { role } = useSelector<RootState, IUserState>(
+		state => state.userSlice
+	)
 
 	return (
 		<div className={style.header_container}>
@@ -43,18 +51,13 @@ const CategoryThemesHeader: FC<IComponentProps> = ({
 						/>
 						<div>
 							<Link className={style.header_author_name} to={'/'}>
-								{themedata?.author}
+								{themeData?.author}
 							</Link>
 							<p className={style.header_date}>April 6, 2022 in News</p>
 						</div>
 					</div>
-				) : (
-					<Link
-						to={`/${id}/create-theme`}
-						className={style.header_create_theme_button}
-					>
-						Create new theme
-					</Link>
+				) : role === 'guest' ? null : (
+					<CreateNewThemeButton id={id || ''} context='themes' />
 				)}
 				<div className={style.header_follow_content}>
 					<p className={style.header_follow}>Followers</p>

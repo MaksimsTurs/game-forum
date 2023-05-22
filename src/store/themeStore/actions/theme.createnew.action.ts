@@ -7,15 +7,15 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 const createNewThem = createAsyncThunk<IThemeData, ICreateNewTheme>(
-	'createnewtheme',
+	'theme/createNew',
 	async (themedata, thunkApi) => {
 		try {
-			const { data } = await axios.post('https://game-forum-server.vercel.app/create/theme', {
+			const { data } = await axios.post('https://game-forum-server.vercel.app/theme/create', {
 				themedata
 			})
 			return data
 		} catch (error) {
-			return thunkApi.fulfillWithValue(error)
+			return thunkApi.fulfillWithValue('You have no permission to create new Theme!')
 		}
 	}
 )

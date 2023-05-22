@@ -1,5 +1,12 @@
 @import '@/styles/variabels.scss';
 
+.themes_error {
+  font-size: 2rem;
+  font-weight: bolder;
+  color: $def-error-color;
+  margin: 1rem 0rem;
+}
+
 .themes_container {
   border: $def-container-border;
   box-shadow: $def-container-shadow;

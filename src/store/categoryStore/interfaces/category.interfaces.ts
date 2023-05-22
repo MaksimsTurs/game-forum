@@ -1,19 +1,20 @@
-export interface ICategoryState {
-  categories: ICategory[] | []
-  isLoading: boolean,
-  error: unknown
+export interface ICategory {
+  _id: string
+  title: string
+  description: string
+  icon: string
+  last_comment: {
+    title: string
+    theme_id: string
+    author: string
+    author_id: string
+    author_icon: string
+    public_data: Date
+  }
 }
 
-export interface ICategory {
-	_id: string
-	title: string
-	description: string
-	last_comment: {
-		title: string
-		author: string
-		author_id: string
-		author_icon: string
-		public_data: string
-		theme_id: string
-	}
+export interface ICategoryState {
+  categories: ICategory[]
+  isLoading: boolean
+  error: string
 }

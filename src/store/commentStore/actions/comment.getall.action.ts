@@ -13,7 +13,7 @@ const getAllComments = createAsyncThunk<IComment[], string>(
 
       return data
     } catch(error) {
-      return thunkApi.rejectWithValue(error)
+      return thunkApi.rejectWithValue('Cann not find Comments from this Them!')
     }
   }
 )

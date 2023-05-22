@@ -4,12 +4,13 @@ import style from '../Theme.module.scss'
 //Interfaces imports
 import { FC, useState } from 'react'
 import { RootState, AppDispatch } from '@/store/store'
-import { IUserRegistration } from '@/store/userStore/interfaces/user.interfaces'
+import { IUserState } from '@/store/userStore/interfaces/user.interfaces'
 import { IComment } from '@/store/commentStore/interfaces/comment.interfaces'
 
 //Node_modules imports
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import ReactMarkdown from 'react-markdown'
 
 //Image imports
 import usericon from '../img/user_icon.png?format=webp&prest=thumbnail'
@@ -21,11 +22,11 @@ interface IComponentProps {
 	comment: IComment
 }
 
-const ThemeComment: FC<IComponentProps> = ({ comment }: IComponentProps) => {
+const ThemeComment: FC<IComponentProps> = ({ comment }) => {
 	const [isDeleted, setDeleted] = useState<boolean>(false)
 	const dispatch = useDispatch<AppDispatch>()
 
-	const { role } = useSelector<RootState, IUserRegistration>(state => state.userAuthSlice)
+	const { role } = useSelector<RootState, IUserState>(state => state.userSlice)
 	const _id = comment._id
 
 	const deletecomment = () => {
@@ -33,6 +34,7 @@ const ThemeComment: FC<IComponentProps> = ({ comment }: IComponentProps) => {
 		setTimeout(() =>	dispatch(deleteComment(body)), 250)
 		setDeleted(true)
 	}
+
 
 	return (
 		<article className={isDeleted ? style.theme_comment_deleted : `${style.theme_content} ${style.theme_comment_animation}`}>
@@ -62,7 +64,7 @@ const ThemeComment: FC<IComponentProps> = ({ comment }: IComponentProps) => {
 						<p className={style.theme_public_date}>Posted April 6, 2022</p>
 					</div>
 					<div>
-						<p className={style.theme_theme_text}>{comment.text}</p>
+						<ReactMarkdown className={style.theme_theme_text} children={comment.text}/>
 					</div>
 				</aside>
 			</div>

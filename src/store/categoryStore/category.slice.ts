@@ -14,7 +14,7 @@ const initialState: ICategoryState = {
 }
 
 const categoriesSlice = createSlice({
-	name: 'categories',
+	name: 'category',
 	initialState,
 	reducers: {},
 	extraReducers(builder) {
@@ -22,13 +22,14 @@ const categoriesSlice = createSlice({
 			.addCase(getAllCategorie.pending, state => {
 				state.isLoading = true
 			})
-			//TODO: Add error
-			.addCase(getAllCategorie.rejected, (state, _) => {
+			.addCase(getAllCategorie.rejected, (state, { payload }) => {
+				//@ts-ignore
+				state.error = payload
 				state.isLoading = false
 			})
-			.addCase(getAllCategorie.fulfilled, (state, action) => {
-        state.isLoading = false
-				state.categories = action.payload
+			.addCase(getAllCategorie.fulfilled, (state, { payload }) => {
+				state.categories = payload
+				state.isLoading = false
 			})
 	},
 })

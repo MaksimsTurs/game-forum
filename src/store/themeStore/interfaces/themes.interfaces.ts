@@ -9,6 +9,7 @@ export interface IThemeData {
 	topics_id?: string | undefined
 	title?: string | undefined
 	author?: string | undefined
+	author_id?: string | undefined
 	text?: string | undefined
 	views?: number | undefined
 	reply?: number | undefined
@@ -16,10 +17,18 @@ export interface IThemeData {
 }
 
 export interface IThemesState {
-  themedata: IThemeData[] | [] 
-  categorydata: ICategoryData | undefined
+  themeArray: IThemeData[]
+	pagination: string[]
+	themeSingle: IThemeData
+  categoryData: ICategoryData | undefined
   isLoading: boolean
-  error: unknown
+  error: string
+}
+
+export interface IThemeReturnData {
+	categoryData: ICategoryData
+	themeData: IThemeData[]
+	pagination: string []
 }
 
 export interface ICloseThemeAction {

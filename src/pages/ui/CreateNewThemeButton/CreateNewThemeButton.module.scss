@@ -1,0 +1,23 @@
+@import '@/styles/variabels.scss';
+
+.create_theme_button {
+  background-color: #4d596f;
+  border-radius: $def-container-border-radius;
+  transition: all 0.3s ease;
+  color: white;
+  font-weight: bolder;
+
+  &:hover {
+    transition: all 0.3s ease;
+    background-color: $def-font-hover-color;
+  }
+}
+
+.create_button_smaller {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+}
+
+.create_button_normal {
+  padding: 0.5rem 1rem;
+}

@@ -4,29 +4,31 @@ import '@/styles/reset.scss'
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Suspense, lazy, StrictMode } from 'react'
+import { Suspense, lazy, StrictMode, FC } from 'react'
 
 //Store imports
 import store from '@/store/store'
 
-//Components imports
+//Lazy Pages imports
 const Home = lazy(() => import('@/pages/Home'))
 const CategoryThemes = lazy(() => import('@/pages/CategoryThemes'))
 const SingleTheme = lazy(() => import('@/pages/SingleTheme'))
 const Registration = lazy(() => import('@/pages/Regestration'))
 const UserDetail = lazy(() => import('@/pages/UserDetail'))
 const CreateTheme = lazy(() => import('@/pages/CreateTheme'))
+
 import Loader from '@/pages/ui/Loader/Loader'
 
-createRoot(document.getElementById('root') as HTMLDivElement).render(
-	<StrictMode>
-		<BrowserRouter>
-			<Provider store={store}>
+const App: FC = () => {
+
+	return (
+		<StrictMode>
+			<BrowserRouter>
 				<Routes>
 					<Route
 						path='/'
 						element={
-							<Suspense>
+							<Suspense fallback={<Loader/>}>
 								<Home />
 							</Suspense>
 						}
@@ -34,7 +36,7 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
 					<Route
 						path='/category/:id/:title'
 						element={
-							<Suspense>
+							<Suspense fallback={<Loader/>}>
 								<CategoryThemes />
 							</Suspense>
 						}
@@ -42,7 +44,7 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
 					<Route
 						path='/theme/:id'
 						element={
-							<Suspense>
+							<Suspense fallback={<Loader/>}>
 								<SingleTheme />
 							</Suspense>
 						}
@@ -72,7 +74,13 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
 						}
 					></Route>
 				</Routes>
-			</Provider>
-		</BrowserRouter>
-	</StrictMode>
+			</BrowserRouter>
+		</StrictMode>
+	)
+}
+
+createRoot(document.getElementById('root') as HTMLDivElement).render(
+	<Provider store={store}>
+		<App />
+	</Provider>
 )

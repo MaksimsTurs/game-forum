@@ -48,10 +48,13 @@ export default viteConfig(({ mode }) => {
 			  ]
 			: []
 
+	const isDev = mode === 'development' ? true : false
+
 	return {
 		appType: 'spa',
 		root: path.resolve(__dirname, 'src'),
 		server: {
+			open: true,
 			host: true,
 		},
 		resolve: {
@@ -60,10 +63,10 @@ export default viteConfig(({ mode }) => {
 			},
 		},
 		build: {
-			minify: 'terser',
+			minify: isDev ? false : 'terser',
 			emptyOutDir: true,
-			sourcemap: true,
-			manifest: true,
+			sourcemap: isDev,
+			manifest: isDev,
 			terserOptions: {
 				ecma: 2020,
 				compress: {
@@ -80,13 +83,18 @@ export default viteConfig(({ mode }) => {
 				input: path.resolve(__dirname, 'src/index.html'),
 				output: {
 					manualChunks: {
-						'react-vendor': ['react', 'react-dom/client', 'react-dom', 'react-router-dom'],
+						'react-vendor': [
+							'react',
+							'react-dom/client',
+							'react-dom',
+							'react-router-dom',
+						],
 						'redux-vendor': ['@reduxjs/toolkit', 'react-redux', 'redux'],
-						'Loader': [ path.resolve(__dirname, 'src/pages/ui/Loader/Loader.tsx') ]
+						Loader: [path.resolve(__dirname, 'src/pages/ui/Loader/Loader.tsx')],
 					},
-					assetFileNames: (assetInfo: { name: any }) => {
-						let extType = assetInfo.name!.split('.').at(1)
-						
+					assetFileNames: (assetInfo: { name: string }) => {
+						let extType: string = assetInfo.name!.split('.').at(1)
+
 						if (/webp/i.test(extType)) {
 							extType = 'img'
 						}

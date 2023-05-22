@@ -1,7 +1,7 @@
 //Inrefaces imports
 import { FC, Fragment } from 'react'
 import { AppDispatch, RootState } from '@/store/store'
-import { IUserDataState } from '@/store/userStore/interfaces/user.interfaces'
+import { IUserState } from '@/store/userStore/interfaces/user.interfaces'
 
 //Components imports
 import Header from './ui/Header/Header'
@@ -17,7 +17,7 @@ import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 //Actions imports
-import userCheck from '@/store/userStore/actions/user.check.action'
+import checkUser from '@/store/userStore/actions/user.checkdata.action'
 
 const UserDetail: FC = () => {
 	const { pathname } = useLocation()
@@ -25,11 +25,11 @@ const UserDetail: FC = () => {
 	const dispatch = useDispatch<AppDispatch>()
 
 	useEffect(() => {
-		dispatch(userCheck(id))
+		dispatch(checkUser({ id }))
 	}, [])
 
-	const { name, role, isLoading } = useSelector<RootState, IUserDataState>(
-		state => state.userCheckSlice
+	const { isLoading, user } = useSelector<RootState, IUserState>(
+		state => state.userSlice
 	)
 
 	return (
@@ -40,10 +40,10 @@ const UserDetail: FC = () => {
 				<Fragment>
 					<Header />
 					<main>
-						<HistoryBoard themetitle={name} />
-						<UserHeader name={name} role={role}/>
+						<HistoryBoard themetitle={user.name} />
+						<UserHeader name={user.name} role={user.role}/>
 						<UserDetailMain />
-						<HistoryBoard themetitle={name} />
+						<HistoryBoard themetitle={user.name} />
 					</main>
 					<Footer />
 				</Fragment>

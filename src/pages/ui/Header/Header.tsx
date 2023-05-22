@@ -17,17 +17,19 @@ import { AppDispatch, RootState } from '@/store/store'
 import { IUserState } from '@/store/userStore/interfaces/user.interfaces'
 
 //Reducers imports
-import { logout } from '@/store/userStore/user.auth.slice'
+import { logout } from '@/store/userStore/user.slice'
 
 //Custom Hooks imports
 import useModal from '@/customHooks/useModal.hook'
 
 const Header: FC = () => {
 	const [isVisible, setVisible] = useState<boolean>(false)
+
 	const logRef = useRef<HTMLLIElement>(null)
+	const dispatch = useDispatch<AppDispatch>()
 
 	useEffect(() => {
-		const clickHandler = async (event: any) => {
+		const clickHandler = async (event: MouseEvent) => {
 			const newState = useModal(logRef, event, isVisible)
 			setVisible(newState)
 		}
@@ -38,15 +40,13 @@ const Header: FC = () => {
 	})
 
 	const { role } = useSelector<RootState, IUserState>(
-		state => state.userAuthSlice
+		state => state.userSlice
 	)
 
-	const dispatch = useDispatch<AppDispatch>()
-
 	const leavFromAccount = () => {
-		dispatch(logout(''))
+		dispatch(logout())
 	}
-
+	
 	return (
 		<header>
 			<Navigation />

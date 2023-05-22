@@ -1,24 +1,22 @@
+//Node_modules imports
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
+
 //Interfaces imports
 import { IRegistrationForm } from '@/pages/ui/LoginForm/interfaces/form.interfaces'
-import { IUserRegistration } from '../interfaces/user.interfaces'
 
-//Node_modules imports
-import axios from 'axios'
-import { createAsyncThunk } from '@reduxjs/toolkit'
-
-//Registraiton action
-const userRegistration = createAsyncThunk<IUserRegistration, IRegistrationForm>(
-	'auth/registration',
-	async (userData, thunkApi) => {
-		try {
-			const { data } = await axios.post(`https://game-forum-server.vercel.app/registration`, {
-				userData,
-			})
-			return data
-		} catch (error) {
-			return thunkApi.rejectWithValue(error)
-		}
+const userRegistration = createAsyncThunk<
+	{ _id: string; role: string; token: string },
+	IRegistrationForm
+>('user/registration', async (userData, thunkApi) => {
+	try {
+		const { data } = await axios.post('https://game-forum-server.vercel.app/registration', {
+			userData,
+		})
+		return data
+	} catch (error) {
+		return thunkApi.rejectWithValue('Cann not find User')
 	}
-)
+})
 
 export default userRegistration

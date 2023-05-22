@@ -25,12 +25,12 @@ const LoginForm: FC<IComponentProps> = ({ state }) => {
 	const dispatch = useDispatch<AppDispatch>()
 
 	const { error } = useSelector<RootState, IUserState>(
-		state => state.userAuthSlice
+		state => state.userSlice
 	)
 
 	const { register, handleSubmit, reset } = useForm<ILoginForm>()
 	const login: SubmitHandler<ILoginForm> = async userData => {
-		dispatch(userLogin({ userData }))
+		dispatch(userLogin(userData))
 		reset()
 	}
 

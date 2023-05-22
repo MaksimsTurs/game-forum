@@ -3,87 +3,33 @@
 .comment_form_container {
   margin: 1rem 0rem;
   padding: 1rem;
+  position: relative;
   border: $def-container-border;
   box-shadow: $def-container-shadow;
   border-radius: $def-container-border-radius;
 
-  .comment_input {
-    border: $def-container-border;
-    border-radius: $def-container-border-radius;
-    padding: 0.5rem;
-    height: 2rem;
-    position: relative;
-
-    >p {
-      font-size: 0.85rem;
-      color: $def-font-color;
-      cursor: text;
-
-      &:focus {
-        outline: none;
-      }
-
-      &:empty::before {
-        content: attr(data-placeholder);
-
-      }
-
-    }
+  .comment_editor {
+    transition: all 0.4s ease;
   }
 
-  .comment_input_active {
-    border: $def-container-border;
-    border-radius: $def-container-border-radius;
-    padding: 2.5rem 1rem 1rem 1rem;
-    font-size: 0.85rem;
-    color: $def-font-color;
-    position: relative;
-
-    >p {
-      min-height: 7rem;
-      max-height: fit-content;
-      color: $def-font-color;
-
-      &:focus {
-        outline: none;
-      }
-    }
-
-    textarea {
-      width: 100%;
-      height: 10rem;
-    }
-  }
-
-  .comment_editor_container {
+  .comment_editor_hidden {
+    visibility: hidden;
+    opacity: 0;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 0.25rem;
-    display: flex;
-    justify-content: flex-start;
+    transition: all 0.4s ease;
   }
 
-  .comment_editor_option {
-    padding: 0.3rem 0.55rem;
-    font-size: 1.05rem;
-    margin-right: 0.25rem;
-    color: $def-font-color;
-
-    &:hover {
-      border-radius: 5px;
-      background: rgba(0, 0, 0, 0.1);
-    }
-  }
-
-  .comment_footer {
-    margin-top: 1rem;
+  .comment_helper {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: $def-font-hover-color;
+    cursor: pointer;
   }
 
   .comment_submit_button {
     background: $def-font-color;
     color: white;
+    margin-top: 0.25rem;
     border-radius: 5px;
     font-size: 1.2rem;
     font-weight: bold;
@@ -102,19 +48,4 @@
     font-weight: bold;
     margin-top: 0.5rem;
   }
-
-  .submit_button_disabled {
-    color: white;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 0.4rem 1rem;
-    background: rgb(103, 118, 144);
-  }
-}
-
-.hidden {
-  display: none;
-  opacity: 0;
-  visibility: hidden;
 }

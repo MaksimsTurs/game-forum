@@ -8,6 +8,13 @@
   margin-right: 1rem;
   width: 25rem;
 
+  .visitors_follower_warn {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: $def-font-color;
+  }
+
   .visitors_gold_container {
     border-radius: $def-container-border-radius;
     background-color: #fac746;

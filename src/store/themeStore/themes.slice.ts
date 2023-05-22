@@ -1,24 +1,31 @@
 //Node_modules imports
-import { createSlice, current } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 //Interfaces imports
-import { IThemesState } from './interfaces/themes.interfaces'
+import {
+	IThemeData,
+	IThemeReturnData,
+	IThemesState,
+} from './interfaces/themes.interfaces'
 
 //Actions imports
-import getAllThemes from './actions/themes.getall.action'
+import getAllThemes from './actions/theme.getall.action'
 import getSingleTheme from './actions/themes.getsingletheme.actions'
-import createNewTheme from './actions/create.newtheme.action'
-import closeTheme from './actions/close.theme.action'
+import createNewTheme from './actions/theme.createnew.action'
+import closeTheme from './actions/theme.close.action'
+import changeTheme from './actions/theme.change.action'
 
 const initialState: IThemesState = {
-	themedata: [],
-	categorydata: undefined,
-	isLoading: true,
+	themeArray: [],
+	pagination: [],
+	themeSingle: {},
+	categoryData: undefined,
+	isLoading: false,
 	error: '',
 }
 
 const themeSlice = createSlice({
-	name: 'themes',
+	name: 'theme',
 	initialState,
 	reducers: {},
 	extraReducers(builder) {
@@ -26,49 +33,72 @@ const themeSlice = createSlice({
 			.addCase(getAllThemes.pending, state => {
 				state.isLoading = true
 			})
-			.addCase(getAllThemes.rejected, (state, action) => {
-				state.isLoading = false
-				state.error = 'Error'
-			})
-			.addCase(getAllThemes.fulfilled, (state, action) => {
+			.addCase(getAllThemes.rejected, (state, { payload }) => {
 				//@ts-ignore
-				state.categorydata = action.payload['categoryData']
-				//@ts-ignore
-				state.themedata = action.payload['themeData']
+				state.error = payload
 				state.isLoading = false
 			})
+			.addCase(
+				getAllThemes.fulfilled,
+				(state, { payload }: PayloadAction<IThemeReturnData>) => {
+					state.categoryData = payload.categoryData
+					console.log(payload)
+					state.themeArray = payload.themeData
+					state.pagination = payload.pagination
+					state.isLoading = false
+				}
+			)
 			//Get Single Theme
 			.addCase(getSingleTheme.pending, state => {
 				state.isLoading = true
 			})
-			.addCase(getSingleTheme.rejected, (state, action) => {
+			.addCase(getSingleTheme.rejected, (state, { payload }) => {
+				//@ts-ignore
+				state.error = payload
 				state.isLoading = false
 			})
-			.addCase(getSingleTheme.fulfilled, (state, { payload }) => {
-				state.themedata = payload
-				state.isLoading = false
-			})
+			.addCase(
+				getSingleTheme.fulfilled,
+				(state, { payload }: PayloadAction<IThemeData>) => {
+					state.themeSingle = payload
+					state.isLoading = false
+				}
+			)
 			//Create new Theme
 			.addCase(createNewTheme.pending, state => {
 				state.isLoading = true
 			})
-			.addCase(createNewTheme.rejected, (state, action) => {
+			.addCase(createNewTheme.rejected, (state, { payload }) => {
+				//@ts-ignore
+				state.error = payload
 				state.isLoading = false
-				state.error = 'Error'
 			})
 			.addCase(createNewTheme.fulfilled, (state, { payload }) => {
-				state.isLoading = false
-				state.themedata = [...state.themedata, payload]
+				state.themeArray.push(payload)
 				window.open(`/theme/${payload._id}`, '_self')
+				state.isLoading = false
 			})
 			//Close Theme
 			.addCase(closeTheme.fulfilled, (state, { payload }) => {
-				state.themedata.map(el => {
+				state.themeArray.map(el => {
 					if (el._id === payload) {
 						el.locked = true
 						return el
 					}
 				})
+			})
+			//Change Theme
+			.addCase(changeTheme.pending, state => {
+				state.isLoading = true
+			})
+			.addCase(changeTheme.rejected, (state, { payload }) => {
+				//@ts-ignore
+				state.error = payload
+				state.isLoading = false
+			})
+			.addCase(changeTheme.fulfilled, (state, { payload }) => {
+				state.themeSingle.text = payload.text
+				state.isLoading = false
 			})
 	},
 })

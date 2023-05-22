@@ -17,7 +17,7 @@ import { AppDispatch, RootState } from '@/store/store.ts'
 import {
 	ICategory,
 	ICategoryState,
-} from '@/store/categoryStore/interfaces/category.interfaces.ts'
+} from '@/store/categoryStore/interfaces/category.interfaces'
 
 //Actions imports
 import getAllCategorie from '@/store/categoryStore/actions/category.getall.action'
@@ -37,9 +37,10 @@ const CategoryContainer: FC = () => {
 		dispatch(getAllCategorie())
 	}, [])
 
-	const { categories, isLoading } = useSelector<RootState, ICategoryState>(
-		state => state.categorySlice
-	)
+	const { error, categories, isLoading } = useSelector<
+		RootState,
+		ICategoryState
+	>(state => state.categorySlice)
 
 	return (
 		<Fragment>
@@ -54,20 +55,28 @@ const CategoryContainer: FC = () => {
 							>
 								<p>Forums</p>
 							</section>
-							<section className={style.category_bordered}>
-								<CategoryHeader setVisibility={setHidden} state={isHidden} />
-								<div
-									className={
-										isHidden
-											? style.category_hidden
-											: style.category_body_content
-									}
-								>
-									{categories.map((el: ICategory, index: number) => (
-										<CategoryBody data={el} key={el._id} src={pngicon[index]} />
-									))}
-								</div>
-							</section>
+							{error ? (
+								<div className={style.category_error}>{error}</div>
+							) : (
+								<section className={style.category_bordered}>
+									<CategoryHeader setVisibility={setHidden} state={isHidden} />
+									<div
+										className={
+											isHidden
+												? style.category_hidden
+												: style.category_body_content
+										}
+									>
+										{categories.map((el: ICategory, index: number) => (
+											<CategoryBody
+												data={el}
+												key={el._id}
+												src={pngicon[index]}
+											/>
+										))}
+									</div>
+								</section>
+							)}
 							<ForumStatistic />
 						</div>
 						<Comments />

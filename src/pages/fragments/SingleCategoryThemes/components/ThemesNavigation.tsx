@@ -10,24 +10,24 @@ import SortForm from './SortForm'
 //Interfaces imports
 import { FC } from 'react'
 
-//Custom Hooks
+//Custom Hooks imports
 import useModal from '@/customHooks/useModal.hook'
 
 const ThemesNavigation: FC = () => {
 	const [isVisible, setVisible] = useState<boolean>(false)
+
 	const paginationRef = useRef<HTMLDivElement>(null)
 
+
 	useEffect(() => {
-		const clickHandler = (event: any) => {
+		const clickHandler = (event: MouseEvent) => {
 			const newState = useModal(paginationRef, event, isVisible)
 			setVisible(newState)
 		}
 
 		document.addEventListener('click', clickHandler)
 
-		return () => {
-			document.removeEventListener('click', clickHandler)
-		}
+		return () => document.removeEventListener('click', clickHandler)
 	})
 
 	return (
@@ -35,7 +35,6 @@ const ThemesNavigation: FC = () => {
 			<div className={style.themes_pages_content}>
 				<ul className={style.themes_pages_list}>
 					<li className={style.themes_navigation_buttonos}>1</li>
-					<li className={style.themes_navigation_buttonos}>2</li>
 				</ul>
 				<button className={style.themes_navigation_buttonos}>Next</button>
 				<button className={style.themes_navigation_buttonos}>&#187;</button>

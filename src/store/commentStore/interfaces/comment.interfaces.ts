@@ -6,17 +6,18 @@ export interface IComment {
 }
 
 export interface ICommentState {
-  comments: IComment[] | [],
+  comments: IComment[],
   isLoading: boolean
-  error: unknown
+  error: ''
+}
+
+export interface ICreateNewComment {
+  token: string
+  text: string
+  theme_id: string
 }
 
 export interface IDeleComment {
   _id: string
   role: string,
-}
-
-export interface ICommentDeleted {
-  deleted: boolean,
-  _id: string
 }

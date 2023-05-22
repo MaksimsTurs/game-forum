@@ -6,15 +6,13 @@ import { combineReducers } from 'redux'
 import { configureStore } from '@reduxjs/toolkit'
 
 //Slice imports
-import userAuthSlice from './userStore/user.auth.slice'
-import userCheckSlice from './userStore/user.check.slice'
+import userSlice from './userStore/user.slice'
 import commentSlice from './commentStore/comment.slice'
 import categorySlice from './categoryStore/category.slice'
 import themesSlice from './themeStore/themes.slice'
 
 export const rootReducer = combineReducers({
-	userAuthSlice,
-  userCheckSlice,
+	userSlice,
   commentSlice,
   categorySlice,
   themesSlice

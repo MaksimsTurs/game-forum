@@ -2,14 +2,14 @@
 import style from './fragments/SingleCategoryThemes/CategoryThemes.module.scss'
 
 //Components imports
-import { Fragment, FC, useEffect } from 'react'
+import { Fragment, FC, useEffect, lazy } from 'react'
 import HistoryBoard from './ui/HistoryBoard/HistoryBoard'
-import Footer from './ui/Footer/Footer'
-import Header from './ui/Header/Header'
 import CategoryThemesHeader from './ui/CategoryThemesHeader/CategoryThemesHeader'
 import CategoryThemesContent from './fragments/SingleCategoryThemes/CategoryThemesContent'
-import Loader from './ui/Loader/Loader'
 import ThemesNavigation from './fragments/SingleCategoryThemes/components/ThemesNavigation'
+import Header from './ui/Header/Header'
+import Footer from './ui/Footer/Footer'
+const Loader = lazy(() => import('./ui/Loader/Loader'))
 
 //Interfaces imports
 import { RootState, AppDispatch } from '@/store/store'
@@ -20,7 +20,7 @@ import { useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 //Actions imports
-import getAllThemes from '@/store/themeStore/actions/themes.getall.action'
+import getAllThemes from '@/store/themeStore/actions/theme.getall.action'
 
 const CategoryThemes: FC = () => {
 	const { pathname } = useLocation()
@@ -28,10 +28,10 @@ const CategoryThemes: FC = () => {
 	const dispatch = useDispatch<AppDispatch>()
 
 	useEffect(() => {
-		dispatch(getAllThemes(id))
+		dispatch(getAllThemes({ id }))
 	}, [])
 
-	const { isLoading, categorydata, themedata } = useSelector<
+	const { error, isLoading, categoryData, themeArray, pagination } = useSelector<
 		RootState,
 		IThemesState
 	>(state => state.themesSlice)
@@ -45,18 +45,24 @@ const CategoryThemes: FC = () => {
 					<Header />
 					<main>
 						<HistoryBoard />
-						<CategoryThemesHeader
-							id={id}
-							title={categorydata?.title}
-							description={categorydata?.description}
-						/>
-						<div className={style.themes_container}>
-							<ThemesNavigation />
-							{
-								themedata.map(data => <CategoryThemesContent key={data._id} theme={data} />)
-							}						
-						</div>
-						<HistoryBoard themetitle={categorydata?.title} />
+						{error ? (
+							<div className={style.themes_error}>{error}</div>
+						) : (
+							<Fragment>
+								<CategoryThemesHeader
+									id={id}
+									title={categoryData?.title}
+									description={categoryData?.description}
+								/>
+								<div className={style.themes_container}>
+									<ThemesNavigation page={pagination}/>
+									{themeArray.map(data => (
+										<CategoryThemesContent key={data._id} theme={data} />
+									))}
+								</div>
+							</Fragment>
+						)}
+						<HistoryBoard themetitle={categoryData?.title} />
 					</main>
 					<Footer />
 				</Fragment>

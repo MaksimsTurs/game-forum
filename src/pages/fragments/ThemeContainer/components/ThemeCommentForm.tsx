@@ -2,108 +2,102 @@
 import style from '../scss/ThemeCommentForm.module.scss'
 
 //Node_modules imports
-import { useState } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import SimpleMDE from 'react-simplemde-editor'
+import 'easymde/dist/easymde.min.css'
 
 //Interfaces imports
-import { FC, useEffect } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import {
-	IComment,
-	ICommentState,
-} from '@/store/commentStore/interfaces/comment.interfaces'
+import { FC, FormEvent } from 'react'
 import { AppDispatch, RootState } from '@/store/store'
+import { IUserState } from '@/store/userStore/interfaces/user.interfaces'
+import { ICommentState } from '@/store/commentStore/interfaces/comment.interfaces'
 
 //Actions imports
 import createNewComment from '@/store/commentStore/actions/comment.create.action'
-import { IUserState } from '@/store/userStore/interfaces/user.interfaces'
 
 const ThemeCommentForm: FC = () => {
 	const [isActive, setActiv] = useState<boolean>(false)
-	const [errorMessage, setErrorMessage] = useState<string>('')
-	const dispatch = useDispatch<AppDispatch>()
+	const [text, setText] = useState('')
+	const [frontError, setError] = useState<string>('')
 
+	const dispatch = useDispatch<AppDispatch>()
 	const { pathname } = useLocation()
 
-	const showeditor = () => {
+	const writeLine = useCallback((value: string) => {
+		setText(value)
+	}, [])
+
+	const options = useMemo(
+		() => ({
+			spellChecker: false,
+			maxHeight: '14rem',
+			autofocus: true,
+			placeholder: 'Write your text her...',
+			status: false,
+			autosave: {
+				uniqueId: Math.floor((Math.random() * 30000) / 5000).toString(),
+				enabled: true,
+				delay: 1000,
+			},
+		}),
+		[]
+	)
+
+		const { error } = useSelector<RootState, ICommentState>(state => state.commentSlice)
+
+	const { token } = useSelector<RootState, IUserState>(
+		state => state.userSlice
+	)
+
+	const showEditor = () => {
 		setActiv(true)
 	}
 
-	const { register, handleSubmit, reset } = useForm<IComment>()
+	const createComment = async (event: FormEvent<HTMLFormElement>) => {
+		event.preventDefault()
 
-	const { role, token } = useSelector<RootState, IUserState>(
-		state => state.userAuthSlice
-	)
-	const { error } = useSelector<RootState, ICommentState>(
-		state => state.commentSlice
-	)
+		if(!token) return setError('You have no permissition to write Comments!')
 
-	const createComment: SubmitHandler<IComment> = async ({ text }) => {
-		const commentdata = {
+		const commentData = {
 			token,
 			text,
 			theme_id: pathname.replace('/theme/', ''),
 		}
 
-		dispatch(createNewComment({ token, commentdata }))
-		reset()
+		dispatch(createNewComment(commentData))
+		setText('')
+		setError('')
 	}
 
-	useEffect(() => {
-		switch (error) {
-			case 401:
-				setErrorMessage('You need to Log-in or Sign-up to write new comment!')
-				break
-		}
-		if (role !== 'guest') {
-			setActiv(false)
-			setErrorMessage('')
-		}
-	}, [error, role])
 
 	return (
 		<form
-			onSubmit={handleSubmit(createComment)}
+			onSubmit={createComment}
 			className={style.comment_form_container}
+			onClick={showEditor}
 		>
 			<div
-				onClick={showeditor}
 				className={
-					isActive ? `${style.comment_input_active}` : `${style.comment_input}`
+					isActive ? style.comment_editor : style.comment_editor_hidden
 				}
 			>
-				<section
-					className={
-						isActive
-							? style.comment_editor_container
-							: `${style.comment_editor_container} ${style.hidden}`
-					}
-				>
-					<button className={style.comment_editor_option}>
-						<b>B</b>
-					</button>
-					<button className={style.comment_editor_option}>
-						<em>B</em>
-					</button>
-					<button className={style.comment_editor_option}>
-						<u>B</u>
-					</button>
-					<button className={style.comment_editor_option}>
-						<s>B</s>
-					</button>
-				</section>
-				<textarea placeholder='Type some one' {...register('text')} />
-			</div>
-			<div className={isActive ? style.comment_footer : style.hidden}>
+				<SimpleMDE value={text} onChange={writeLine} options={options} />
 				<button
-					className={style.comment_submit_button}
+					type='submit'
+					className={
+						isActive ? style.comment_submit_button : style.comment_editor_hidden
+					}
 				>
 					Submit
 				</button>
-				<div className={style.comment_error}>{errorMessage}</div>
 			</div>
-		</form>
+			{!isActive && <div className={style.comment_helper}>Click to write comment!</div>}
+			<div className={(frontError || error) ? style.comment_error : ''}>
+					{frontError || error}
+			</div>
+		</form>	
 	)
 }
 

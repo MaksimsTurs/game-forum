@@ -12,7 +12,7 @@ const getAllCategorie = createAsyncThunk<ICategory[]>(
 			const { data } = await axios.get<ICategory[]>(`https://game-forum-server.vercel.app/`)
 			return data
 		} catch (error) {
-			return thunkApi.rejectWithValue(error)
+			return thunkApi.rejectWithValue('Unhanlde runtime error')
 		}
 	}
 )

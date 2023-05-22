@@ -2,7 +2,7 @@
 import { ICommentState } from './interfaces/comment.interfaces'
 
 //Node_modules imports
-import { createSlice, current } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 //Actions imports
 import getAllComments from './actions/comment.getall.action'
@@ -25,9 +25,10 @@ const commentSlice = createSlice({
 			.addCase(getAllComments.pending, state => {
 				state.isLoading = true
 			})
-			.addCase(getAllComments.rejected, (state, action) => {
+			.addCase(getAllComments.rejected, (state, { payload }) => {
+				//@ts-ignore
+				state.error = payload
 				state.isLoading = false
-				state.error = action.error
 			})
 			.addCase(getAllComments.fulfilled, (state, { payload }) => {
 				state.comments = payload
@@ -37,31 +38,27 @@ const commentSlice = createSlice({
 			.addCase(createNewComment.pending, state => {
 				state.isLoading = true
 			})
-			.addCase(createNewComment.rejected, (state, action) => {
-				state.error = action.payload
+			.addCase(createNewComment.rejected, (state, { payload }) => {
+				//@ts-ignore
+				state.error = payload
 				state.isLoading = false
 			})
 			.addCase(createNewComment.fulfilled, (state, { payload }) => {
-				state.isLoading = false
 				state.comments = [...state.comments, payload]
+				state.isLoading = false
 			})
 			//Delete comment
 			.addCase(deleteComment.pending, state => {
 				state.isLoading = true
 			})
-			.addCase(deleteComment.rejected, (state, action) => {
+			.addCase(deleteComment.rejected, (state, { payload }) => {
+				//@ts-ignore
+				state.error = payload
 				state.isLoading = false
-				state.error = action.error
 			})
 			.addCase(deleteComment.fulfilled, (state, { payload }) => {
+				state.comments = state.comments.filter((el) => el._id !== payload)
 				state.isLoading = false
-				
-				if (payload.deleted) {
-					const newArrayOfComments = current(state.comments).filter(
-						el => el._id !== payload._id
-					)
-					state.comments = newArrayOfComments
-				}
 			})
 	},
 })

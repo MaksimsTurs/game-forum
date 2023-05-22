@@ -1,20 +1,20 @@
+import { IComment } from '@/store/commentStore/interfaces/comment.interfaces'
+
 export interface IUserState {
+	id: string
 	role: string
 	token: string
 	isLoading: boolean
 	error: string
+	user: IUserData
 }
 
-export interface IUserLogin {
-	userData: {
-		name: string,
-		password: string
-	}
-}
-
-export interface IUserDataState {
-	role: string
+export interface IUserData {
 	name: string
-	isLoading: boolean
-	error: string
+	role: string
+	avatar: string
+	accountCreateDate: string
+	followers: IUserData[]
+	lastComments: IComment[]
+	lastViewers: IUserData[]
 }

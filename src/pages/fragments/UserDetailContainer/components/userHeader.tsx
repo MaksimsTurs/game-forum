@@ -12,7 +12,7 @@ interface IComponentProps {
 	role: string
 }
 
-const UserHeader: FC<IComponentProps> = ({ name, role }: IComponentProps) => {
+const UserHeader: FC<IComponentProps> = ({ name, role }) => {
 
 	return (
 		<div className={style.detail_header}>

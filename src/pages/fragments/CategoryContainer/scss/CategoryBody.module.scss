@@ -58,4 +58,10 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+
+  .category_no_comment {
+    font-weight: bolder;
+    font-size: 0.85rem;
+    color: $def-font-hover-color;
+  }
 }
