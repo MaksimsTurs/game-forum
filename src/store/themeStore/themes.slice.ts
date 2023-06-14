@@ -74,7 +74,8 @@ const themeSlice = createSlice({
 				state.isLoading = false
 			})
 			.addCase(createNewTheme.fulfilled, (state, { payload }) => {
-				state.themeArray.push(payload)
+				state.themeArray = [...state.themeArray, payload]		
+			
 				window.open(`/theme/${payload._id}`, '_self')
 				state.isLoading = false
 			})
